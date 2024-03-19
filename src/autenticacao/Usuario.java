@@ -34,6 +34,15 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
+    // métodos
+
+    public void fazerLogin() {
+        // implementação
+    }
+
+    public void fazerLogout() {
+        // implementação
+    }
+
 
 }
