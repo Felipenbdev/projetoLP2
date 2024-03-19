@@ -9,7 +9,8 @@ public class Comprador extends Usuario{
         super(nome, email, senha);
     }
 
-    public void fazerCompra() {
+    public Produto fazerCompra(String nomeProduto) {
 
+        return null;
     }
 }
