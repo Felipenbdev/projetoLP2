@@ -1,4 +1,4 @@
-package autenticacao;
+package entidades;
 
 public class Comprador extends Usuario{
 
@@ -10,6 +10,6 @@ public class Comprador extends Usuario{
     }
 
     public void fazerCompra() {
-        // implementação
+
     }
 }
