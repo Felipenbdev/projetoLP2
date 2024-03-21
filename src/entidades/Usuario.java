@@ -45,6 +45,15 @@ public class Usuario {
         this.login = login;
     }
     // métodos
+    public boolean autenticacao(String senha, String email){
+        if(this.senha.equals(senha) && this.email.equals(email)){
+            fazerLogin();
+            return isLogin();
+        }else{
+            System.out.println("Senha ou email invalido.");
+            return isLogin();
+        }
+    }
 
     public boolean fazerLogin() {
         setLogin(true);
