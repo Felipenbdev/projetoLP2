@@ -1,20 +1,23 @@
 package entidades;
-import java.util.ArrayList;
-import java.util.List;
 
 public class GerenciadorProdutos {
-        private static List<Produto> listaProdutos = new ArrayList<>();
+    private Produto[] produtos;
 
-        public static void adicionarProduto(Produto produto) {
-            listaProdutos.add(produto);
-        }
-        public static void removerProduto(Produto produto) {
-        listaProdutos.remove(produto);
-        }
+    public GerenciadorProdutos(int capacidade) {
+        this.produtos = new Produto[capacidade];
+        // Adiciona produtos pré-definidos
+        adicionarProdutosPreDefinidos();
+    }
 
-        public static List<Produto> getTodosProdutos() {
-            return listaProdutos;
-        }
+    private void adicionarProdutosPreDefinidos() {
+
+    }
+
+    public Produto[] getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(Produto[] produtos) {
+        this.produtos = produtos;
+    }
 }
-
-
