@@ -17,7 +17,7 @@ public class Comprador extends Usuario{
         for(Produto produto: produtos){
             if(produto.getNome().contains(nomeProduto)){
                 System.out.println(produto);
-                System.out.print("esse e o produto que dejesa? [s] [n]:");
+                System.out.print("Confirma o produto? [s/n] \n>> ");
                 if(sc.next().toLowerCase().charAt(0) == 's'){
                     return produto;
                 }
