@@ -37,9 +37,17 @@ public class GerenciadorProdutos{
         produtos [4][3] = new Produto("Carne", 2.00, 10);
         produtos [4][4] = new Produto("Frango", 1.00, 10);
         }
+
     public Produto getProdutos(int linha, int coluna) {
         return produtos[linha][coluna];
     }
+    public void diminuirQuantidadeProduto(int linha, int coluna, int quantidade) {
+        Produto produto = produtos[linha][coluna];
+        if (produto != null && produto.getQuantidade() >= quantidade) {
+            produto.diminuirQuantidade(quantidade);
+        } else {
+            System.out.println("Quantidade insuficiente do produto!");
+        }
+    }
 
- 
 }

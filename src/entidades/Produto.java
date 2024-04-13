@@ -8,17 +8,14 @@ public class Produto {
 
 
     public Produto(String nome, double valor, int quantidade) {
-        super();
         this.nome = nome;
         this.valor = valor;
         this.quantidade = quantidade;
-        if(quantidade > 0){
-            this.disponivel = true;
-        }else{
-            this.disponivel = false;
-        }
+        this.disponivel = quantidade > 0; // Atualiza a disponibilidade com base na quantidade inicial
     }
-
+    public void diminuirQuantidade(int quantidade) {
+        this.quantidade -= quantidade;
+    }
     public String getNome() {
         return nome;
     }
