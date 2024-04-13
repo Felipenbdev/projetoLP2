@@ -2,7 +2,7 @@ package entidades;
 
 public class GerenciadorProdutos{
         private Produto [][] produtos= new Produto[5][5];
-    private GerenciadorProdutos(Produto produtos[][]) {
+    public GerenciadorProdutos(Produto produtos[][]) {
         this.produtos = produtos;
     }
     public void addProdutos() {
