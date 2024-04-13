@@ -45,13 +45,13 @@ public class Usuario {
         this.login = login;
     }
     // métodos
-    public boolean autenticacao(String senha, String email){
-        if(this.senha.equals(senha) && this.email.equals(email)){
+    public boolean autenticacao(String email, String senha) {
+        if (this.email.equals(email) && this.senha.equals(senha)) {
             fazerLogin();
-            return isLogin();
-        }else{
-            System.out.println("Senha ou email invalido.");
-            return isLogin();
+            return true;
+        } else {
+            System.out.println("Senha ou email inválido.");
+            return false;
         }
     }
 
@@ -60,9 +60,8 @@ public class Usuario {
         return this.login;
     }
 
-    public boolean fazerLogout() {
+    public void fazerLogout() {
         setLogin(false);
-        return this.login;
     }
 
 
