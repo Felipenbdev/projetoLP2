@@ -2,8 +2,8 @@ package entidades;
 
 public class GerenciadorProdutos{
         private Produto [][] produtos= new Produto[5][5];
-    public GerenciadorProdutos(Produto produtos[][]) {
-        this.produtos = produtos;
+    public GerenciadorProdutos() {
+        addProdutos();
     }
     public void addProdutos() {
         //bebidas
@@ -40,13 +40,6 @@ public class GerenciadorProdutos{
     public Produto getProdutos(int linha, int coluna) {
         return produtos[linha][coluna];
     }
-   
-    
-
-
-    
-
-    
 
  
 }
