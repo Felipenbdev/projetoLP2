@@ -4,9 +4,11 @@ import entidades.Comprador;
 import entidades.GerenciadorProdutos;
 import entidades.Produto;
 
+import static entidades.Comprador.gerenciador;
+
 public class Programa {
     public static void main(String[] args) {
-        GerenciadorProdutos gerenciador = new GerenciadorProdutos();
+
 
         /*
         // Exibindo os produtos de todas as categorias
@@ -19,6 +21,8 @@ public class Programa {
         */
 
         System.out.println("teste 1"+gerenciador.getProdutos(0,0));
+        Comprador.fazerCompra("coca");
+        System.out.println("teste 2"+gerenciador.getProdutos(0,0));
         Comprador.fazerCompra("coca");
         System.out.println("teste 2"+gerenciador.getProdutos(0,0));
     }
