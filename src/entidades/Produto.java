@@ -51,8 +51,12 @@ public class Produto {
         this.disponivel = disponivel;
     }
 
-    
-
-
-    
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "nome='" + nome + '\'' +
+                ", valor=" + valor +
+                ", quantidade=" + quantidade +
+                '}';
+    }
 }
