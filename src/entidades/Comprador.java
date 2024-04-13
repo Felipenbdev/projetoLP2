@@ -3,7 +3,6 @@ package entidades;
 import java.util.Scanner;
 
 public class Comprador extends Usuario{
-
     public Comprador() {
     }
 
@@ -11,15 +10,19 @@ public class Comprador extends Usuario{
         super(nome, email, senha);
     }
 
-    public static Produto fazerCompra(String nomeProduto,Produto[] produtos) {
+    public static Produto fazerCompra(String nomeProduto) {
+        GerenciadorProdutos gerenciador = new GerenciadorProdutos();
         Scanner sc = new Scanner(System.in);
-        //mostrar uma forma de consultar o vetor de produtos sem passar ele como parametro da função
-        for(Produto produto: produtos){
-            if(produto.getNome().contains(nomeProduto)){
-                System.out.println(produto);
-                System.out.print("Confirma o produto? [s/n] \n>> ");
-                if(sc.next().toLowerCase().charAt(0) == 's'){
-                    return produto;
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                Produto produto = gerenciador.getProdutos(i,j);
+                if (produto.getNome().toLowerCase().contains(nomeProduto.toLowerCase())) {
+                    System.out.println(produto);
+                    System.out.print("Confirma o produto? [s/n] \n>> ");
+                    if (sc.next().toLowerCase().charAt(0) == 's' && produto.isDisponivel()) {
+                        gerenciador.diminuirQuantidadeProduto(i,j,1);
+                        return produto;
+                    }
                 }
             }
         }

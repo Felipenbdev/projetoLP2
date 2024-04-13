@@ -1,7 +1,7 @@
 package entidades;
 
 public class GerenciadorProdutos{
-        private Produto [][] produtos= new Produto[5][5];
+    private Produto [][] produtos= new Produto[5][5];
     public GerenciadorProdutos() {
         addProdutos();
     }
