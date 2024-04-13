@@ -5,7 +5,7 @@ public class GerenciadorProdutos{
     private GerenciadorProdutos(Produto produtos[][]) {
         this.produtos = produtos;
     }
-    public void addProdutos(Produto produtos[][]) {
+    public void addProdutos() {
         //bebidas
         produtos [0][0] = new Produto("Coca-Cola", 5.00, 10);
         produtos [0][1] = new Produto("Pepsi", 4.00, 10);
@@ -37,7 +37,7 @@ public class GerenciadorProdutos{
         produtos [4][3] = new Produto("Carne", 2.00, 10);
         produtos [4][4] = new Produto("Frango", 1.00, 10);
         }
-    public Produto getProdutos(Produto produtos[][], int linha, int coluna) {
+    public Produto getProdutos(int linha, int coluna) {
         return produtos[linha][coluna];
     }
    
