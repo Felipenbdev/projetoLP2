@@ -24,6 +24,7 @@ public class Comprador extends Usuario{
             }
         }
         System.out.println("o produto que digitou nao existe ou esta fora de estoque no momento");
-        return null;
-    }
+        return null; 
+   }
+
 }

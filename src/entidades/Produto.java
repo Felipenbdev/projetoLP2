@@ -1,16 +1,14 @@
 package entidades;
 
 public class Produto {
-    private String nome;
-    private double valor;
-    private int quantidade;
-    private boolean disponivel;
+    protected String nome;
+    protected double valor;
+    protected int quantidade;
+    protected boolean disponivel;
 
-    public Produto(){
-
-    }
 
     public Produto(String nome, double valor, int quantidade) {
+        super();
         this.nome = nome;
         this.valor = valor;
         this.quantidade = quantidade;
@@ -52,4 +50,9 @@ public class Produto {
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
     }
+
+    
+
+
+    
 }
