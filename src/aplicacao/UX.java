@@ -6,6 +6,7 @@ import entidades.GerenciadorProdutos;
 import java.util.Scanner;
 
 import static aplicacao.Programa.comprador;
+import static entidades.Comprador.gerenciador;
 
 public class UX {
     static Scanner sc = new Scanner(System.in);
@@ -66,7 +67,7 @@ public class UX {
                 System.out.println("-=-=-=-=-=-=- Menu de compras -=-=-=-=-=-=-");
                 System.out.print("[1] Bebidas\n[2] Livros\n[3] Eletrônicos\n[4] Roupas\n[5] Alimentos\n[0] Sair\n>>");
                 categoria = sc.nextInt();
-                GerenciadorProdutos gerenciador = new GerenciadorProdutos();
+
                 System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 
                 switch (categoria) {

@@ -60,9 +60,8 @@ public class Usuario {
         return false;
     }
 
-    public boolean fazerLogin() {
+    public void fazerLogin() {
         setLogin(true);
-        return this.login;
     }
 
     public void fazerLogout() {
