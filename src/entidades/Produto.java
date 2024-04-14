@@ -42,10 +42,9 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "Mercadoria{" +
-                "\nTipo = " + nome +
+        return  "\nTipo = " + nome +
                 "\nValor = R$ " + valor +
                 "\nQuantidade = " + quantidade +
-                "}";
+                "\n-----------------------------------";
     }
 }

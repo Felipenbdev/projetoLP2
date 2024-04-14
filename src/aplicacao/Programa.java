@@ -1,12 +1,14 @@
 package aplicacao;
 
 import entidades.Comprador;
-import entidades.Produto;
 import entidades.GerenciadorProdutos;
 
 import java.util.Scanner;
 
 public class Programa {
+    public static void limparTela(){
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Comprador comprador = null;
@@ -39,16 +41,19 @@ public class Programa {
                     break;
             }
         }
+        limparTela();
         int categoria = 0;
         // Loop para comprar produtos
         boolean continuarComprando = true;
         while (continuarComprando) {
             do{
+            
             System.out.println("-=-=-=-=-=-=- Menu de compras -=-=-=-=-=-=-");
-            System.out.print("[1] Bebidas\n[2] Livros\n[3] Eletrônicos\n[4] Roupas\n[5] Alimentos\n [0] Sair\n>>");
+            System.out.print("[1] Bebidas\n[2] Livros\n[3] Eletrônicos\n[4] Roupas\n[5] Alimentos\n[0] Sair\n>>");
             categoria = sc.nextInt();
             GerenciadorProdutos gerenciador = new GerenciadorProdutos();
             System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+    
             switch (categoria) {
                 case 0:
                     continuarComprando = false;
@@ -81,7 +86,7 @@ public class Programa {
                 case 5:
                     System.out.println("Alimentos:");
                     for(int i = 0; i < 5; i++) {
-                        System.out.println(gerenciador.getProdutos(4, i));
+                        System.out.println( gerenciador.getProdutos(4, i));
                     }
                     break;
                 default:
@@ -89,20 +94,12 @@ public class Programa {
                     break;
             }
             }while(categoria != 0);
-
-            System.out.print("Código do produto desejado: ");
+            System.out.print("Digite o nome do produto que deseja comprar: ");
+            comprador.fazerCompra(sc.nextLine());
+            System.out.print("Deseja continuar comprando? [s/n] \n>> ");
+            continuarComprando = sc.next().toLowerCase().charAt(0) == 's';
             sc.nextLine(); // Limpa o buffer de entrada
-
-            Produto produto = comprador.fazerCompra(sc.nextLine());
-            if(produto != null) {
-                System.out.println("Produto comprado: " + produto.getNome());
-
-                System.out.print("Deseja comprar mais algum produto? (s/n): ");
-                String resposta = sc.nextLine();
-                continuarComprando = resposta.equalsIgnoreCase("s");
-            }
         }
-
         // Após o loop de compras, faz o logout
         comprador.fazerLogout();
         System.out.println("Você saiu da sua conta.");
