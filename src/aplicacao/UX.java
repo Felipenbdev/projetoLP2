@@ -118,4 +118,7 @@ public class UX {
             sc.nextLine(); // Limpa o buffer de entrada
         }
     }
+    public static void limparTela(){
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    }
 }
