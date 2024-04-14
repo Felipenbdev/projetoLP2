@@ -1,15 +1,16 @@
 package entidades;
 
 public class Usuario {
-    private String nome;
-    private String email;
-    private String senha;
-    private boolean login;
+    protected String nome;
+    protected String email;
+    protected String senha;
+    protected boolean login;
 
     public Usuario(){
 
     }
     public Usuario(String nome, String email, String senha) {
+        super();
         this.nome = nome;
         this.email = email;
         this.senha = senha;

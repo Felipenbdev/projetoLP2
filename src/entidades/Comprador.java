@@ -35,7 +35,7 @@ public class Comprador extends Usuario{
                         return produto;
                     } else {
                         // Se o usuário não confirmar, continua procurando outros produtos
-                        System.out.println("Você não confirmou o produto.");
+                        System.out.println("Produto não confirmado. Continuando a busca...");
                     }
                 }
             }

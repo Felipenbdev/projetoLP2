@@ -1,9 +1,9 @@
 package entidades;
 
 public class Produto {
-    protected String nome;
-    protected double valor;
-    protected int quantidade;
+    private String nome;
+    private double valor;
+    private int quantidade;
 
 
 
@@ -42,10 +42,10 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "Produto{" +
-                "nome='" + nome + '\'' +
-                ", valor=" + valor +
-                ", quantidade=" + quantidade +
-                '}';
+        return "Mercadoria{" +
+                "\nTipo = " + nome +
+                "\nValor = R$ " + valor +
+                "\nQuantidade = " + quantidade +
+                "}";
     }
 }
