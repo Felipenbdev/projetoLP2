@@ -30,8 +30,7 @@ public class UX {
         return comprador.autenticacao(emailLogin, senhaLogin);
     }
     public static void menuLogin() {
-        System.out.println("[1] - Novo usuário");
-        System.out.println("[2] - Fazer login");
+        System.out.print("[1] - Novo usuário \n[2] - Fazer login\n>>");
     }
     public static void telaDeLogin(){
         boolean loggedIn = false;
@@ -64,7 +63,6 @@ public class UX {
         boolean continuarComprando = true;
         while (continuarComprando) {
             do{
-
                 System.out.println("-=-=-=-=-=-=- Menu de compras -=-=-=-=-=-=-");
                 System.out.print("[1] Bebidas\n[2] Livros\n[3] Eletrônicos\n[4] Roupas\n[5] Alimentos\n[0] Sair\n>>");
                 categoria = sc.nextInt();
