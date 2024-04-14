@@ -33,12 +33,12 @@ public class Comprador extends Usuario{
                         do {
                             System.out.print("digite a quantidade de unidades do produto\n>> ");
                             quant = sc.nextInt();
-                            if(quant <= produto.getQuantidade()) {
+                            if(quant <= produto.getQuantidade() && quant>0) {
                                 gerenciador.diminuirQuantidadeProduto(i, j, quant);
                                 return produto;
                             }
-                            System.out.println("quantidade de unidades nao disponivel, digite novamente!");
-                        }while(quant > produto.getQuantidade());
+                            System.out.println("quantidade de unidades nao disponivel ou invalida, digite novamente!");
+                        }while(quant > produto.getQuantidade() || quant<=0);
                     } else {
 
                         System.out.println("Produto não confirmado. Continuando a busca...");

@@ -106,7 +106,8 @@ public class UX {
                         System.out.println("Roupas:");
                         for(int i = 0; i < 5; i++) {
                             System.out.println(gerenciador.getProdutos(3, i));
-                        }sc.nextLine(); // Limpa o buffer de entrada
+                        }
+                        sc.nextLine(); // Limpa o buffer de entrada
                         System.out.print("Digite o nome do produto que deseja comprar: ");
                         comprador.fazerCompra(sc.nextLine());
                         break;
@@ -125,6 +126,7 @@ public class UX {
                 }
             }while(categoria != 0);
             if(categoria != 0) {
+
                 System.out.print("Deseja continuar comprando? [s/n] \n>> ");
                 continuarComprando = sc.next().toLowerCase().charAt(0) == 's';
                 sc.nextLine(); // Limpa o buffer de entrada
