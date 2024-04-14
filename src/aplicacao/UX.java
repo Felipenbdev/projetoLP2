@@ -30,8 +30,8 @@ public class UX {
         return comprador.autenticacao(emailLogin, senhaLogin);
     }
     public static void menuLogin() {
-        System.out.println("1-Novo usuário");
-        System.out.println("2-Fazer login");
+        System.out.println("[1] - Novo usuário");
+        System.out.println("[2] - Fazer login");
     }
     public static void telaDeLogin(){
         boolean loggedIn = false;
@@ -111,6 +111,7 @@ public class UX {
                         break;
                 }
             }while(categoria != 0);
+            sc.nextLine(); // Limpa o buffer de entrada
             System.out.print("Digite o nome do produto que deseja comprar: ");
             comprador.fazerCompra(sc.nextLine());
             System.out.print("Deseja continuar comprando? [s/n] \n>> ");
