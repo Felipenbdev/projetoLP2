@@ -80,42 +80,55 @@ public class UX {
                         for(int i = 0; i < 5; i++) {
                             System.out.println(gerenciador.getProdutos(0, i));
                         }
+                        sc.nextLine(); // Limpa o buffer de entrada
+                        System.out.print("Digite o nome do produto que deseja comprar: ");
+                        comprador.fazerCompra(sc.nextLine());
                         break;
                     case 2:
                         System.out.println("Livros:");
                         for(int i = 0; i < 5; i++) {
                             System.out.println(gerenciador.getProdutos(1, i));
                         }
+                        sc.nextLine(); // Limpa o buffer de entrada
+                        System.out.print("Digite o nome do produto que deseja comprar: ");
+                        comprador.fazerCompra(sc.nextLine());
                         break;
                     case 3:
                         System.out.println("Eletrônicos:");
                         for(int i = 0; i < 5; i++) {
                             System.out.println(gerenciador.getProdutos(2, i));
                         }
+                        sc.nextLine(); // Limpa o buffer de entrada
+                        System.out.print("Digite o nome do produto que deseja comprar: ");
+                        comprador.fazerCompra(sc.nextLine());
                         break;
                     case 4:
                         System.out.println("Roupas:");
                         for(int i = 0; i < 5; i++) {
                             System.out.println(gerenciador.getProdutos(3, i));
-                        }
+                        }sc.nextLine(); // Limpa o buffer de entrada
+                        System.out.print("Digite o nome do produto que deseja comprar: ");
+                        comprador.fazerCompra(sc.nextLine());
                         break;
                     case 5:
                         System.out.println("Alimentos:");
                         for(int i = 0; i < 5; i++) {
                             System.out.println( gerenciador.getProdutos(4, i));
                         }
+                        sc.nextLine(); // Limpa o buffer de entrada
+                        System.out.print("Digite o nome do produto que deseja comprar: ");
+                        comprador.fazerCompra(sc.nextLine());
                         break;
                     default:
                         System.out.println("Categoria inválida.");
                         break;
                 }
             }while(categoria != 0);
-            sc.nextLine(); // Limpa o buffer de entrada
-            System.out.print("Digite o nome do produto que deseja comprar: ");
-            comprador.fazerCompra(sc.nextLine());
-            System.out.print("Deseja continuar comprando? [s/n] \n>> ");
-            continuarComprando = sc.next().toLowerCase().charAt(0) == 's';
-            sc.nextLine(); // Limpa o buffer de entrada
+            if(categoria != 0) {
+                System.out.print("Deseja continuar comprando? [s/n] \n>> ");
+                continuarComprando = sc.next().toLowerCase().charAt(0) == 's';
+                sc.nextLine(); // Limpa o buffer de entrada
+            }
         }
     }
     public static void limparTela(){

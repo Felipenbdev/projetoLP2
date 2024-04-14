@@ -14,6 +14,7 @@ public class Comprador extends Usuario{
 
     public Produto fazerCompra(String nomeProduto) {
         Scanner sc = new Scanner(System.in);
+        int quant;
 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
@@ -29,9 +30,15 @@ public class Comprador extends Usuario{
                     System.out.println(produto);
                     System.out.print("Confirma o produto? [s/n] \n>> ");
                     if (sc.next().toLowerCase().charAt(0) == 's') {
-
-                        gerenciador.diminuirQuantidadeProduto(i, j, 1);
-                        return produto;
+                        do {
+                            System.out.print("digite a quantidade de unidades do produto\n>> ");
+                            quant = sc.nextInt();
+                            if(quant <= produto.getQuantidade()) {
+                                gerenciador.diminuirQuantidadeProduto(i, j, quant);
+                                return produto;
+                            }
+                            System.out.println("quantidade de unidades nao disponivel, digite novamente!");
+                        }while(quant > produto.getQuantidade());
                     } else {
 
                         System.out.println("Produto não confirmado. Continuando a busca...");
