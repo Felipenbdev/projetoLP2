@@ -35,6 +35,7 @@ public class Comprador extends Usuario{
                             quant = sc.nextInt();
                             if(quant <= produto.getQuantidade() && quant>0) {
                                 gerenciador.diminuirQuantidadeProduto(i, j, quant);
+                                System.out.println("Compra realizada com sucesso!");
                                 return produto;
                             }
                             System.out.println("quantidade de unidades nao disponivel ou invalida, digite novamente!");

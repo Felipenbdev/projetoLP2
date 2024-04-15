@@ -6,7 +6,7 @@ public class Programa {
     public static Comprador comprador = new Comprador();
     public static void main(String[] args) {
         System.out.println("_-=-=-=-=-=-=-=-=-=-= Bem-vindo a Loja Online NOZAMA =-=-=-=-=-=-=-=-=-=-_");
-        //telaDeLogin();
+        telaDeLogin();
         limparTela();
         telaDeCompra();
         comprador.fazerLogout();

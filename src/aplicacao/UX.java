@@ -1,8 +1,6 @@
 package aplicacao;
 
 import entidades.Comprador;
-import entidades.GerenciadorProdutos;
-
 import java.util.Scanner;
 
 import static aplicacao.Programa.comprador;
