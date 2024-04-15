@@ -33,9 +33,11 @@ public class Comprador extends Usuario{
                         do {
                             System.out.print("digite a quantidade de unidades do produto\n>> ");
                             quant = sc.nextInt();
+                            System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+                            calcularPreco(produto, quant);
                             if(quant <= produto.getQuantidade() && quant>0) {
                                 gerenciador.diminuirQuantidadeProduto(i, j, quant);
-                                System.out.println("Compra realizada com sucesso!");
+                                finalizarCompra(produto, quant);
                                 return produto;
                             }
                             System.out.println("quantidade de unidades nao disponivel ou invalida, digite novamente!");
@@ -53,6 +55,17 @@ public class Comprador extends Usuario{
         System.out.println("O produto que digitou não existe.");
         return null;
     }
+    public double calcularPreco(Produto produto, int quantidade) {
+        return produto.getValor() * quantidade;
+
+    }
+    public void finalizarCompra(Produto produto, int quantidade) {
+        double preco = calcularPreco(produto, quantidade);
+        System.out.println("Compra finalizada com sucesso!");
+        System.out.println("Valor total: R$ " + preco);
+    }
+
+
 
 
 }

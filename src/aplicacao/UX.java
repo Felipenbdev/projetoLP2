@@ -28,7 +28,7 @@ public class UX {
         String senhaLogin = sc.nextLine();
         return comprador.autenticacao(emailLogin, senhaLogin);
     }
-    public static void menuLogin() {
+    private static void menuLogin() {
         System.out.print("[1] - Novo usuário \n[2] - Fazer login\n>>");
     }
     public static void telaDeLogin(){
@@ -62,7 +62,8 @@ public class UX {
         boolean continuarComprando = true;
         while (continuarComprando) {
             do{
-                System.out.println("-=-=-=-=-=-=- Menu de compras -=-=-=-=-=-=-");
+                System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+                System.out.println("           MENU DE COMPRAS");
                 System.out.print("[1] Bebidas\n[2] Livros\n[3] Eletrônicos\n[4] Roupas\n[5] Alimentos\n[0] Sair\n>>");
                 categoria = sc.nextInt();
 
