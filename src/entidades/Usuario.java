@@ -68,5 +68,4 @@ public class Usuario {
         setLogin(false);
     }
 
-
 }

@@ -7,7 +7,7 @@ import static aplicacao.Programa.comprador;
 import static entidades.Comprador.gerenciador;
 
 public class UX {
-    static Scanner sc = new Scanner(System.in);
+    private static Scanner sc = new Scanner(System.in);
     public static void criarComprador() {
         System.out.print("Digite seu nome: ");
         String nome = sc.nextLine();
