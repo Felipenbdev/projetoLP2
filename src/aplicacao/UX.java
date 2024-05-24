@@ -1,12 +1,10 @@
 package aplicacao;
 
 import entidades.Comprador;
-import entidades.Produto;
 
 import java.util.Scanner;
 
 import static aplicacao.Programa.comprador;
-import static entidades.Comprador.gerenciador;
 
 public class UX {
     private static Scanner sc = new Scanner(System.in);
