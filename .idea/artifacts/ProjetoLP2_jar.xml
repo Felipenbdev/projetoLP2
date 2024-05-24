@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ProjetoLP2:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ProjetoLP2_jar</output-path>
+    <root id="archive" name="ProjetoLP2.jar">
+      <element id="module-output" name="ProjetoLP2" />
+      <element id="library" level="project" name="ProjetoLP21" />
+      <element id="library" level="project" name="ProjetoLP2" />
+    </root>
+  </artifact>
+</component>

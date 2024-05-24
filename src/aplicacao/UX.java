@@ -1,6 +1,8 @@
 package aplicacao;
 
 import entidades.Comprador;
+import entidades.Produto;
+
 import java.util.Scanner;
 
 import static aplicacao.Programa.comprador;
@@ -33,6 +35,7 @@ public class UX {
     }
     public static void telaDeLogin(){
         boolean loggedIn = false;
+        //tirar esse while e usar recursividade
         while (!loggedIn) {
             UX.menuLogin();
             int ops = sc.nextInt();
@@ -57,82 +60,40 @@ public class UX {
         }
     }
     public static void telaDeCompra(){
-        int categoria = 0;
-        // Loop para comprar produtos
-        boolean continuarComprando = true;
-        while (continuarComprando) {
-            do{
-                System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-                System.out.println("           MENU DE COMPRAS");
-                System.out.print("[1] Bebidas\n[2] Livros\n[3] Eletrônicos\n[4] Roupas\n[5] Alimentos\n[0] Sair\n>>");
-                categoria = sc.nextInt();
+        int categoria;
+        System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+        System.out.println("           MENU DE COMPRAS");
+        System.out.print("[1] Livros\n[2] Eletrônicos\n[0] Sair\n>>");
+        categoria = sc.nextInt();
+        System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 
-                System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+        switch (categoria) {
+            case 0:
+                //sair
+                break;
+            case 1:
+                System.out.println("Livros:");
+                comprador.fazerCompra(categoria);
+                break;
+            case 2:
+                System.out.println("Eletrônicos:");
+                comprador.fazerCompra(categoria);
+                break;
+            default:
+                System.out.println("Categoria inválida.");
+                break;
+        }
 
-                switch (categoria) {
-                    case 0:
-                        continuarComprando = false;
-                        categoria = 0;
-                        break;
-                    case 1:
-                        System.out.println("Bebidas:");
-                        for(int i = 0; i < 5; i++) {
-                            System.out.println(gerenciador.getProdutos(0, i));
-                        }
-                        sc.nextLine(); // Limpa o buffer de entrada
-                        System.out.print("Digite o nome do produto que deseja comprar: ");
-                        comprador.fazerCompra(sc.nextLine());
-                        break;
-                    case 2:
-                        System.out.println("Livros:");
-                        for(int i = 0; i < 5; i++) {
-                            System.out.println(gerenciador.getProdutos(1, i));
-                        }
-                        sc.nextLine(); // Limpa o buffer de entrada
-                        System.out.print("Digite o nome do produto que deseja comprar: ");
-                        comprador.fazerCompra(sc.nextLine());
-                        break;
-                    case 3:
-                        System.out.println("Eletrônicos:");
-                        for(int i = 0; i < 5; i++) {
-                            System.out.println(gerenciador.getProdutos(2, i));
-                        }
-                        sc.nextLine(); // Limpa o buffer de entrada
-                        System.out.print("Digite o nome do produto que deseja comprar: ");
-                        comprador.fazerCompra(sc.nextLine());
-                        break;
-                    case 4:
-                        System.out.println("Roupas:");
-                        for(int i = 0; i < 5; i++) {
-                            System.out.println(gerenciador.getProdutos(3, i));
-                        }
-                        sc.nextLine(); // Limpa o buffer de entrada
-                        System.out.print("Digite o nome do produto que deseja comprar: ");
-                        comprador.fazerCompra(sc.nextLine());
-                        break;
-                    case 5:
-                        System.out.println("Alimentos:");
-                        for(int i = 0; i < 5; i++) {
-                            System.out.println( gerenciador.getProdutos(4, i));
-                        }
-                        sc.nextLine(); // Limpa o buffer de entrada
-                        System.out.print("Digite o nome do produto que deseja comprar: ");
-                        comprador.fazerCompra(sc.nextLine());
-                        break;
-                    default:
-                        System.out.println("Categoria inválida.");
-                        break;
-                }
-            }while(categoria != 0);
-            if(categoria != 0) {
-
-                System.out.print("Deseja continuar comprando? [s/n] \n>> ");
-                continuarComprando = sc.next().toLowerCase().charAt(0) == 's';
-                sc.nextLine(); // Limpa o buffer de entrada
-            }
+        System.out.print("Deseja continuar comprando? [s/n] \n>> ");
+        boolean choice = sc.nextLine().toLowerCase().equals("s");
+        if(choice) {
+            telaDeCompra();
+        }else{
+            System.out.println("saindo");
         }
     }
-    public static void limparTela(){
+
+    public static void limparTela() {
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
 }

@@ -1,9 +1,16 @@
 package entidades;
 
+import estoque.Eletronico;
+import estoque.GerenciadorProdutos;
+import estoque.Livro;
+import estoque.Produto;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Comprador extends Usuario{
-    public static GerenciadorProdutos gerenciador = new GerenciadorProdutos();
+    public static estoque.GerenciadorProdutos gerenciador = new GerenciadorProdutos();
 
     public Comprador() {
     }
@@ -12,60 +19,62 @@ public class Comprador extends Usuario{
         super(nome, email, senha);
     }
 
-    public Produto fazerCompra(String nomeProduto) {
+    public estoque.Produto fazerCompra(int categoria) {
+        List<Produto> produtosEncontrados = new ArrayList<>();
+        List<Produto> produtos = gerenciador.getProdutos();
+        for (Produto produto : produtos) {
+            switch (categoria){
+                case 1:
+                    System.out.print((produto instanceof Livro) ? produto.toString(): "");
+                    break;
+                case 2:
+                    System.out.print((produto instanceof Eletronico) ? produto.toString(): "");
+                    break;
+            }
+        }
         Scanner sc = new Scanner(System.in);
+        System.out.print("\nDigite o nome do produto que deseja comprar: ");
+        String nomeProduto = sc.nextLine();
         int quant;
-
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                Produto produto = gerenciador.getProdutos(i, j);
-                if (produto.getNome().toLowerCase().contains(nomeProduto.toLowerCase())) {
-                    // Produto encontrado
-                    if (produto.getQuantidade() == 0) {
-                        // Produto fora de estoque
-                        System.out.println("O produto " + produto.getNome() + " está fora de estoque.");
-                        return null;
-                    }
-
-                    System.out.println(produto);
-                    System.out.print("Confirma o produto? [s/n] \n>> ");
-                    if (sc.next().toLowerCase().charAt(0) == 's') {
-                        do {
-                            System.out.print("digite a quantidade de unidades do produto\n>> ");
-                            quant = sc.nextInt();
-                            System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-                            calcularPreco(produto, quant);
-                            if(quant <= produto.getQuantidade() && quant>0) {
-                                gerenciador.diminuirQuantidadeProduto(i, j, quant);
-                                finalizarCompra(produto, quant);
-                                return produto;
-                            }
-                            System.out.println("quantidade de unidades nao disponivel ou invalida, digite novamente!");
-                        }while(quant > produto.getQuantidade() || quant<=0);
-                    } else {
-
-                        System.out.println("Produto não confirmado. Continuando a busca...");
-                        return null;
-                    }
+        for(Produto produto: produtos){
+            if (produto.getNome().toLowerCase().contains(nomeProduto.toLowerCase())){
+                // Produto encontrado
+                if (produto.getQuantidade() > 0) {
+                    produtosEncontrados.add(produto);
                 }
             }
         }
-
-        // Se nenhum produto foi encontrado, exibe uma mensagem e retorna null
-        System.out.println("O produto que digitou não existe.");
-        return null;
+        if(produtosEncontrados.isEmpty()){
+            System.out.println("nao houve resultados na sua busca :( tente novamente");
+            return null;
+        }
+        int i = 1;
+        for(Produto produto: produtosEncontrados){
+            System.out.printf("[%d] %s ",i,produto.getNome());
+            i++;
+        }
+        System.out.print("Selecione um produto usando seu indice ou 0 para desistir\n--> ");
+        int escolha = sc.nextInt();
+        if(escolha == 0){
+            System.out.println("Saindo! ");
+            return null;
+        }else{
+            finalizarCompra(produtosEncontrados.get(escolha-1),sc);
+            return produtosEncontrados.get(escolha-1);
+        }
     }
-    public double calcularPreco(Produto produto, int quantidade) {
-        return produto.getValor() * quantidade;
 
+    public void finalizarCompra(Produto produto,Scanner sc) {
+        System.out.print("Digite a quantidade de produtos que deseja comprar: ");
+        int quantidade = sc.nextInt();
+        if(quantidade <= produto.getQuantidade() && quantidade>0) {
+            double preco = produto.getValor() * quantidade;
+            System.out.println("Compra finalizada com sucesso!");
+            System.out.println("Valor total: R$ " + preco);
+            produto.diminuirQuantidade(quantidade);
+        }else{
+            System.out.println("Quantidade invalida! Digite novamente.");
+            finalizarCompra(produto,sc);
+        }
     }
-    public void finalizarCompra(Produto produto, int quantidade) {
-        double preco = calcularPreco(produto, quantidade);
-        System.out.println("Compra finalizada com sucesso!");
-        System.out.println("Valor total: R$ " + preco);
-    }
-
-
-
-
 }
