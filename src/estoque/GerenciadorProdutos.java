@@ -3,13 +3,14 @@ package estoque;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class GerenciadorProdutos{
     private static final List<Produto> produtos = new ArrayList<Produto>();
     public GerenciadorProdutos() {
-        addProdutos();
+        estocarProdutos();
     }
 
-    public void addProdutos() {
+    public void estocarProdutos() {
         //livros
         produtos.add(new Livro("Harry Potter", 50.00, 10));
         produtos.add(new Livro("Senhor dos Aneis", 40.00, 10));
@@ -26,6 +27,10 @@ public class GerenciadorProdutos{
 
         public List<Produto> getProdutos(){
             return produtos;
+        }
+        
+        public void administrarProdutos(){
+            System.out.print("\n[1] Adicionar produto\n[2] Remover produto\n[3] Alterar quantidade do produto\n[4] Alterar preco do produto\n >> ");
         }
 
 }

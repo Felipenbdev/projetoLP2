@@ -83,7 +83,7 @@ public class UX {
         }
 
         System.out.print("Deseja continuar comprando? [s/n] \n>> ");
-        boolean choice = sc.nextLine().toLowerCase().equals("s");
+        boolean choice = sc.nextLine().equalsIgnoreCase("s");
         if(choice) {
             telaDeCompra();
         }else{

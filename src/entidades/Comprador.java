@@ -33,7 +33,7 @@ public class Comprador extends Usuario{
             }
         }
         Scanner sc = new Scanner(System.in);
-        System.out.print("\nDigite o nome do produto que deseja comprar: ");
+        System.out.print("\nDigite o nome do produto: ");
         String nomeProduto = sc.nextLine();
         int quant;
         for(Produto produto: produtos){
@@ -50,10 +50,11 @@ public class Comprador extends Usuario{
         }
         int i = 1;
         for(Produto produto: produtosEncontrados){
-            System.out.printf("[%d] %s ",i,produto.getNome());
+            System.out.printf("\n[%d] %s",i,produto.getNome());
             i++;
         }
-        System.out.print("Selecione um produto usando seu indice ou 0 para desistir\n--> ");
+
+        System.out.print("\n[0] Sair\n--> ");
         int escolha = sc.nextInt();
         if(escolha == 0){
             System.out.println("Saindo! ");

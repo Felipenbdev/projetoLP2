@@ -40,9 +40,9 @@ public abstract class Produto {
 
     @Override
     public String toString() {
-        return  "\nTipo = " + nome +
-                "\nValor = R$ " + valor +
-                "\nQuantidade = " + quantidade +
+        return  "\nTipo: " + nome +
+                "\nValor: R$ " + valor +
+                "\nQuantidade: " + quantidade +
                 "\n-----------------------------------";
     }
 }
