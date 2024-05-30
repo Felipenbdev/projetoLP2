@@ -57,6 +57,7 @@ public class UX {
             }
         }
     }
+
     public static void telaDeCompra(){
         int categoria;
         System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
@@ -83,6 +84,7 @@ public class UX {
         }
 
         System.out.print("Deseja continuar comprando? [s/n] \n>> ");
+        sc.nextLine(); //buffer
         boolean choice = sc.nextLine().equalsIgnoreCase("s");
         if(choice) {
             telaDeCompra();

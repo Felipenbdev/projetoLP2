@@ -19,33 +19,43 @@ public class Comprador extends Usuario{
         super(nome, email, senha);
     }
 
-    public estoque.Produto fazerCompra(int categoria) {
+    public Produto fazerCompra(int categoria) {
         List<Produto> produtosEncontrados = new ArrayList<>();
         List<Produto> produtos = gerenciador.getProdutos();
         for (Produto produto : produtos) {
             switch (categoria){
                 case 1:
-                    System.out.print((produto instanceof Livro) ? produto.toString(): "");
+                    System.out.print((produto instanceof Livro) ? produto.toString(): ""); //deve ser alterado!
                     break;
                 case 2:
-                    System.out.print((produto instanceof Eletronico) ? produto.toString(): "");
+                    System.out.print((produto instanceof Eletronico) ? produto.toString(): ""); //deve ser alterado!
                     break;
             }
         }
         Scanner sc = new Scanner(System.in);
-        System.out.print("\nDigite o nome do produto: ");
+//        System.out.print("\nDigite o nome do produto ou [VOLTAR] para retroceder: ");
         String nomeProduto = sc.nextLine();
+        if(nomeProduto.equals("VOLTAR")){
+            System.out.println("Voltando ao menu de compras!");
+            return null;
+        }
         int quant;
         for(Produto produto: produtos){
             if (produto.getNome().toLowerCase().contains(nomeProduto.toLowerCase())){
-                // Produto encontrado
-                if (produto.getQuantidade() > 0) {
-                    produtosEncontrados.add(produto);
+                if((produto instanceof Livro && categoria == 1) || (produto instanceof Eletronico && categoria == 2)) {
+                    // Produto encontrado
+                    if (produto.getQuantidade() > 0) {
+                        // Quantidade valida, produto add na list
+                        produtosEncontrados.add(produto);
+                    }
                 }
             }
         }
         if(produtosEncontrados.isEmpty()){
-            System.out.println("nao houve resultados na sua busca :( tente novamente");
+            System.out.print("nao houve resultados na sua busca :( deseja fazer outra busca? [s] para sim [n] para não: ");
+            if(sc.nextLine().equals("s")){
+                fazerCompra(categoria);
+            }
             return null;
         }
         int i = 1;

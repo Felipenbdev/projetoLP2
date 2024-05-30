@@ -3,8 +3,8 @@
     <output-path>$PROJECT_DIR$/out/artifacts/ProjetoLP2_jar</output-path>
     <root id="archive" name="ProjetoLP2.jar">
       <element id="module-output" name="ProjetoLP2" />
-      <element id="library" level="project" name="ProjetoLP21" />
-      <element id="library" level="project" name="ProjetoLP2" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/out/artifacts/ProjetoLP2_jar/ProjetoLP2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/out/artifacts/ProjetoLP2_jar2/ProjetoLP2.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
