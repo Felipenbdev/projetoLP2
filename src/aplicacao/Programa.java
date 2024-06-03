@@ -13,5 +13,6 @@ public class Programa {
         telaDeCompra();
         comprador.fazerLogout();
         System.out.println("Você saiu da sua conta.");
+        
     }
 }

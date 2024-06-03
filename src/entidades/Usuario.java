@@ -47,25 +47,13 @@ public abstract class Usuario {
         this.login = login;
     }
     // métodos
-    public boolean autenticacao(String email, String senha) {
-        if(this.email != null && this.senha != null) {
-            if (this.email.equals(email) && this.senha.equals(senha)) {
-                fazerLogin();
-                return true;
-            } else {
-                System.out.println("Senha ou email inválido.");
-                return false;
-            }
-        }
-        System.out.println("Usuario nao encontrado, realize o registro!");
-        return false;
-    }
+    public abstract boolean autenticacao(String email, String senha);
+       
 
     public void fazerLogin() {
         setLogin(true);
     }
     
-    public abstract Produto fazerCompra(int categoria);
 
 
     public void fazerLogout() {

@@ -103,4 +103,6 @@ public class UX {
     public static void limparTela() {
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
+
+    
 }

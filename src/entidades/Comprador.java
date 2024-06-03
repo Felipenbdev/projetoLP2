@@ -22,7 +22,21 @@ public class Comprador extends Usuario {
     public Comprador(String nome, String email, String senha) {
         super(nome, email, senha);
     }
-
+    @Override
+    public boolean autenticacao(String email, String senha){
+        if(this.email != null && this.senha != null) {
+            if (this.email.equals(email) && this.senha.equals(senha)) {
+                fazerLogin();
+                return true;
+            } else {
+                System.out.println("Senha ou email inválido.");
+                return false;
+            }
+        }
+        System.out.println("Usuario nao encontrado, realize o registro!");
+        return false;
+    }
+    
     public Produto fazerCompra(int categoria) {
         List<Produto> produtosEncontrados = new ArrayList<>();
         List<Produto> produtos = gerenciador.getProdutos();
@@ -59,17 +73,17 @@ public class Comprador extends Usuario {
         if (produtosEncontrados.isEmpty()) {
             System.out.print("Não houve resultados na sua busca :( Deseja fazer outra busca? [s] para sim [n] para não: ");
             if (sc.nextLine().equalsIgnoreCase("s")) {
-                fazerCompra(categoria);
+                return fazerCompra(categoria);
             }
             return null;
         }
         int i = 1;
         for (Produto produto : produtosEncontrados) {
-            System.out.printf("\n[%d] %s", i, produto.getNome());
+            System.out.printf("\n[%d] %s - quantidade: %d ", i, produto.getNome(), produto.getQuantidade());
             i++;
         }
 
-        System.out.print("\n[0] Sair\n--> ");
+        System.out.print("\n[0] Sair\n Digite o indice --> ");
         int escolha = sc.nextInt();
         sc.nextLine(); // Consome a nova linha
         if (escolha == 0) {

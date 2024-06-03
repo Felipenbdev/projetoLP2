@@ -16,7 +16,7 @@ public class GerenciadorProdutos{
         produtos.add(new Livro("Senhor dos Aneis", 40.00, 10));
         produtos.add(new Livro("O Pequeno Principe", 30.00, 10));
         produtos.add(new Livro("Dom Casmurro", 20.00, 10));
-        produtos.add(new Livro("O Cortiço", 10.00, 10));
+        produtos.add(new Livro("Casa Monstro", 10.00, 10));
         //eletronicos
         produtos.add(new Eletronico("Iphone", 5000.00, 10));
         produtos.add(new Eletronico("Samsung", 4000.00, 10));
