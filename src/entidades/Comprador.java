@@ -1,6 +1,5 @@
 package entidades;
 
-// Importações necessárias
 import estoque.Eletronico;
 import estoque.GerenciadorProdutos;
 import estoque.Livro;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-// Classe Comprador que herda de Usuario
+
 public class Comprador extends Usuario {
     // Gerenciador de produtos estático
     public static GerenciadorProdutos gerenciador = new GerenciadorProdutos();
@@ -44,7 +43,6 @@ public class Comprador extends Usuario {
         return false;
     }
 
-    // Método para realizar a compra
     public void fazerCompra(int categoria) {
         List<Produto> produtosEncontrados = new ArrayList<>();
         List<Produto> produtos = gerenciador.getProdutos();
@@ -65,7 +63,6 @@ public class Comprador extends Usuario {
             }
         }
 
-        // Scanner para entrada do usuário
         Scanner sc = new Scanner(System.in);
         System.out.print("\nDigite o nome do produto que deseja comprar ou 'VOLTAR' para retroceder: ");
         String nomeProduto = sc.nextLine();
@@ -116,7 +113,7 @@ public class Comprador extends Usuario {
         }
     }
 
-    // Método para finalizar a compra
+
     public void finalizarCompra(Produto produto, Scanner sc) {
         System.out.print("Digite a quantidade de produtos que deseja comprar: ");
         int quantidade = sc.nextInt();
@@ -141,7 +138,6 @@ public class Comprador extends Usuario {
         }
     }
 
-    // Método para selecionar o método de pagamento
     private Pagamento selecionarMetodoPagamento(Scanner sc) {
         System.out.println("Selecione o método de pagamento:");
         System.out.println("[1] Cartão de Crédito");
@@ -151,7 +147,6 @@ public class Comprador extends Usuario {
         int escolha = sc.nextInt();
         sc.nextLine();
 
-        // Retorna a instância do método de pagamento escolhido
         switch (escolha) {
             case 1:
                 return new CartaoCredito();
