@@ -29,8 +29,6 @@ public class GerenciadorProdutos{
             return produtos;
         }
         
-        public void administrarProdutos(){
-            System.out.print("\n[1] Adicionar produto\n[2] Remover produto\n[3] Alterar quantidade do produto\n[4] Alterar preco do produto\n >> ");
-        }
+        
 
 }

@@ -1,6 +1,6 @@
 package entidades;
 
-public class Usuario {
+public abstract class Usuario {
     protected String nome;
     protected String email;
     protected String senha;
@@ -63,6 +63,7 @@ public class Usuario {
     public void fazerLogin() {
         setLogin(true);
     }
+    
 
     public void fazerLogout() {
         setLogin(false);
