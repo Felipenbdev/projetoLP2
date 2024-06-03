@@ -1,4 +1,5 @@
 package entidades;
+import estoque.Produto;
 
 public abstract class Usuario {
     protected String nome;
@@ -64,6 +65,8 @@ public abstract class Usuario {
         setLogin(true);
     }
     
+    public abstract Produto fazerCompra(int categoria);
+
 
     public void fazerLogout() {
         setLogin(false);
