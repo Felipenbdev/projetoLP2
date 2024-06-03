@@ -1,5 +1,6 @@
 package entidades;
 
+// Importações necessárias
 import estoque.Eletronico;
 import estoque.GerenciadorProdutos;
 import estoque.Livro;
@@ -13,15 +14,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+// Classe Comprador que herda de Usuario
 public class Comprador extends Usuario {
+    // Gerenciador de produtos estático
     public static GerenciadorProdutos gerenciador = new GerenciadorProdutos();
 
+    // Construtor padrão
     public Comprador() {
     }
 
+    // Construtor com parâmetros
     public Comprador(String nome, String email, String senha) {
         super(nome, email, senha);
     }
+
+    // Método de autenticação
     @Override
     public boolean autenticacao(String email, String senha){
         if(this.email != null && this.senha != null) {
@@ -36,10 +43,13 @@ public class Comprador extends Usuario {
         System.out.println("Usuario nao encontrado, realize o registro!");
         return false;
     }
-    
+
+    // Método para realizar a compra
     public Produto fazerCompra(int categoria) {
         List<Produto> produtosEncontrados = new ArrayList<>();
         List<Produto> produtos = gerenciador.getProdutos();
+
+        // Exibe produtos conforme a categoria escolhida
         for (Produto produto : produtos) {
             switch (categoria) {
                 case 1:
@@ -54,13 +64,19 @@ public class Comprador extends Usuario {
                     break;
             }
         }
+
+        // Scanner para entrada do usuário
         Scanner sc = new Scanner(System.in);
         System.out.print("\nDigite o nome do produto que deseja comprar ou 'VOLTAR' para retroceder: ");
         String nomeProduto = sc.nextLine();
+
+        // Opção para voltar ao menu de compras
         if (nomeProduto.equalsIgnoreCase("VOLTAR")) {
             System.out.println("Voltando ao menu de compras!");
             return null;
         }
+
+        // Busca pelo produto desejado
         for (Produto produto : produtos) {
             if (produto.getNome().toLowerCase().contains(nomeProduto.toLowerCase())) {
                 if ((produto instanceof Livro && categoria == 1) || (produto instanceof Eletronico && categoria == 2)) {
@@ -70,6 +86,8 @@ public class Comprador extends Usuario {
                 }
             }
         }
+
+        // Caso não encontre produtos
         if (produtosEncontrados.isEmpty()) {
             System.out.print("Não houve resultados na sua busca :( Deseja fazer outra busca? [s] para sim [n] para não: ");
             if (sc.nextLine().equalsIgnoreCase("s")) {
@@ -77,15 +95,20 @@ public class Comprador extends Usuario {
             }
             return null;
         }
+
+        // Lista os produtos encontrados
         int i = 1;
         for (Produto produto : produtosEncontrados) {
             System.out.printf("\n[%d] %s - quantidade: %d ", i, produto.getNome(), produto.getQuantidade());
             i++;
         }
 
+        // Escolha do produto pelo índice
         System.out.print("\n[0] Sair\n Digite o indice --> ");
         int escolha = sc.nextInt();
         sc.nextLine(); // Consome a nova linha
+
+        // Opção para sair
         if (escolha == 0) {
             System.out.println("Saindo! ");
             return null;
@@ -95,13 +118,17 @@ public class Comprador extends Usuario {
         }
     }
 
+    // Método para finalizar a compra
     public void finalizarCompra(Produto produto, Scanner sc) {
         System.out.print("Digite a quantidade de produtos que deseja comprar: ");
         int quantidade = sc.nextInt();
+
+        // Verifica se a quantidade é válida
         if (quantidade <= produto.getQuantidade() && quantidade > 0) {
             double preco = produto.getValor() * quantidade;
             System.out.println("Valor total: R$ " + preco);
-            
+
+            // Seleciona o método de pagamento
             Pagamento pagamento = selecionarMetodoPagamento(sc);
             if (pagamento != null) {
                 pagamento.realizarPagamento(preco);
@@ -116,6 +143,7 @@ public class Comprador extends Usuario {
         }
     }
 
+    // Método para selecionar o método de pagamento
     private Pagamento selecionarMetodoPagamento(Scanner sc) {
         System.out.println("Selecione o método de pagamento:");
         System.out.println("[1] Cartão de Crédito");
@@ -125,6 +153,7 @@ public class Comprador extends Usuario {
         int escolha = sc.nextInt();
         sc.nextLine();
 
+        // Retorna a instância do método de pagamento escolhido
         switch (escolha) {
             case 1:
                 return new CartaoCredito();
