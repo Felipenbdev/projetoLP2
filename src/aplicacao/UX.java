@@ -11,7 +11,6 @@ import static aplicacao.Programa.comprador;
 
 public class UX {
     private static Scanner sc = new Scanner(System.in);
-    public static List<Produto> carrinho = new ArrayList<>();
     public static void criarComprador() {
         System.out.print("Digite seu nome: ");
         String nome = sc.nextLine();
