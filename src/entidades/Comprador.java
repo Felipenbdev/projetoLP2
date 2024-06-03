@@ -59,7 +59,7 @@ public class Comprador extends Usuario {
         if (produtosEncontrados.isEmpty()) {
             System.out.print("Não houve resultados na sua busca :( Deseja fazer outra busca? [s] para sim [n] para não: ");
             if (sc.nextLine().equalsIgnoreCase("s")) {
-                return fazerCompra(categoria);
+                fazerCompra(categoria);
             }
             return null;
         }

@@ -1,13 +1,17 @@
 package aplicacao;
 
 import entidades.Comprador;
+import estoque.Produto;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import static aplicacao.Programa.comprador;
 
 public class UX {
     private static Scanner sc = new Scanner(System.in);
+    public static List<Produto> carrinho = new ArrayList<>();
     public static void criarComprador() {
         System.out.print("Digite seu nome: ");
         String nome = sc.nextLine();
@@ -60,6 +64,7 @@ public class UX {
 
     public static void telaDeCompra(){
         int categoria;
+        boolean choice = true;
         System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
         System.out.println("           MENU DE COMPRAS");
         System.out.print("[1] Livros\n[2] Eletrônicos\n[0] Sair\n>>");
@@ -68,7 +73,7 @@ public class UX {
 
         switch (categoria) {
             case 0:
-                //sair
+                choice = false;
                 break;
             case 1:
                 System.out.println("Livros:");
@@ -83,9 +88,11 @@ public class UX {
                 break;
         }
 
-        System.out.print("Deseja continuar comprando? [s/n] \n>> ");
-        sc.nextLine(); //buffer
-        boolean choice = sc.nextLine().equalsIgnoreCase("s");
+        if(categoria != 0) {
+            System.out.print("Deseja continuar comprando? [s/n] \n>> ");
+            sc.nextLine();
+            choice = sc.nextLine().equalsIgnoreCase("s");
+        }
         if(choice) {
             telaDeCompra();
         }else{
