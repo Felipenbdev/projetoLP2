@@ -45,7 +45,7 @@ public class Comprador extends Usuario {
     }
 
     // Método para realizar a compra
-    public Produto fazerCompra(int categoria) {
+    public void fazerCompra(int categoria) {
         List<Produto> produtosEncontrados = new ArrayList<>();
         List<Produto> produtos = gerenciador.getProdutos();
 
@@ -53,12 +53,12 @@ public class Comprador extends Usuario {
         for (Produto produto : produtos) {
             switch (categoria) {
                 case 1:
-                    if (produto instanceof Livro) {
+                    if (produto instanceof Livro && produto.getQuantidade()>0) {
                         System.out.println(produto);
                     }
                     break;
                 case 2:
-                    if (produto instanceof Eletronico) {
+                    if (produto instanceof Eletronico && produto.getQuantidade()>0) {
                         System.out.println(produto);
                     }
                     break;
@@ -73,7 +73,7 @@ public class Comprador extends Usuario {
         // Opção para voltar ao menu de compras
         if (nomeProduto.equalsIgnoreCase("VOLTAR")) {
             System.out.println("Voltando ao menu de compras!");
-            return null;
+            return;
         }
 
         // Busca pelo produto desejado
@@ -91,9 +91,9 @@ public class Comprador extends Usuario {
         if (produtosEncontrados.isEmpty()) {
             System.out.print("Não houve resultados na sua busca :( Deseja fazer outra busca? [s] para sim [n] para não: ");
             if (sc.nextLine().equalsIgnoreCase("s")) {
-                return fazerCompra(categoria);
+                return;
             }
-            return null;
+            return;
         }
 
         // Lista os produtos encontrados
@@ -111,10 +111,8 @@ public class Comprador extends Usuario {
         // Opção para sair
         if (escolha == 0) {
             System.out.println("Saindo! ");
-            return null;
         } else {
             finalizarCompra(produtosEncontrados.get(escolha - 1), sc);
-            return produtosEncontrados.get(escolha - 1);
         }
     }
 
