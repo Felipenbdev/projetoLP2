@@ -28,7 +28,4 @@ public class GerenciadorProdutos{
         public List<Produto> getProdutos(){
             return produtos;
         }
-        
-        
-
 }
