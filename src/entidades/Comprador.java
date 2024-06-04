@@ -1,14 +1,7 @@
 package entidades;
 
-import estoque.Eletronico;
-import estoque.GerenciadorProdutos;
-import estoque.Livro;
-import estoque.Produto;
-import pagamento.Boleto;
-import pagamento.CartaoCredito;
-import pagamento.Pagamento;
-import pagamento.Pix;
-
+import estoque.*;
+import pagamento.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -43,7 +36,7 @@ public class Comprador extends Usuario {
         return false;
     }
 
-    public void fazerCompra(int categoria) {
+    public Produto fazerCompra(int categoria) {
         List<Produto> produtosEncontrados = new ArrayList<>();
         List<Produto> produtos = gerenciador.getProdutos();
 
@@ -68,9 +61,10 @@ public class Comprador extends Usuario {
         String nomeProduto = sc.nextLine();
 
         // Opção para voltar ao menu de compras
-        if (nomeProduto.equalsIgnoreCase("VOLTAR")) {
+        if (nomeProduto.equals("VOLTAR")) {
             System.out.println("Voltando ao menu de compras!");
-            return;
+            // Encerra o método
+            fazerCompra(categoria);
         }
 
         // Busca pelo produto desejado
@@ -88,9 +82,11 @@ public class Comprador extends Usuario {
         if (produtosEncontrados.isEmpty()) {
             System.out.print("Não houve resultados na sua busca :( Deseja fazer outra busca? [s] para sim [n] para não: ");
             if (sc.nextLine().equalsIgnoreCase("s")) {
-                return;
+                fazerCompra(categoria);
             }
-            return;
+
+            // Encerra o método
+            return null;
         }
 
         // Lista os produtos encontrados
@@ -106,39 +102,50 @@ public class Comprador extends Usuario {
         sc.nextLine(); // Consome a nova linha
 
         // Opção para sair
+        if(escolha < 0 || produtosEncontrados.size() < escolha) {
+            fazerCompra(categoria);
+        }
         if (escolha == 0) {
             System.out.println("Saindo! ");
+            return null;
         } else {
-            finalizarCompra(produtosEncontrados.get(escolha - 1), sc);
-        }
-    }
-
-
-    public void finalizarCompra(Produto produto, Scanner sc) {
-        System.out.print("Digite a quantidade de produtos que deseja comprar: ");
-        int quantidade = sc.nextInt();
-
-        // Verifica se a quantidade é válida
-        if (quantidade <= produto.getQuantidade() && quantidade > 0) {
-            double preco = produto.getValor() * quantidade;
-            System.out.println("Valor total: R$ " + preco);
-
-            // Seleciona o método de pagamento
-            Pagamento pagamento = selecionarMetodoPagamento(sc);
-            if (pagamento != null) {
-                pagamento.realizarPagamento(preco);
-                produto.diminuirQuantidade(quantidade);
-                System.out.println("Compra finalizada com sucesso!");
-            } else {
-                System.out.println("Método de pagamento inválido. Compra não realizada.");
+            System.out.print("Digite a quantidade de produtos que deseja comprar: ");
+            int quantidade = sc.nextInt();
+            Produto produtoEncontrado = produtosEncontrados.get(escolha - 1);
+            // Verifica se a quantidade é válida
+            if (quantidade <= produtosEncontrados.get(escolha - 1).getQuantidade() && quantidade > 0) {
+                produtosEncontrados.get(escolha - 1).diminuirQuantidade(quantidade);
+                produtoEncontrado.setQuantidade(quantidade);
+                return produtoEncontrado;
+            }else{
+                System.out.println("Valor Invalido, Retornando...");
+                return fazerCompra(categoria);
             }
-        } else {
-            System.out.println("Quantidade inválida! Digite novamente.");
-            finalizarCompra(produto, sc);
         }
     }
 
-    private Pagamento selecionarMetodoPagamento(Scanner sc) {
+
+    public void finalizarCompra(List<Produto> carrinho) {
+        System.out.println("exibindo carrinho de compras.");
+        System.out.println(carrinho);
+        double preco = 0;
+        //percorrer carrinho somando o preço dos produtos
+        for(Produto produto: carrinho){
+            preco += produto.getQuantidade() * produto.getValor();
+        }
+        System.out.printf("valor total do seu carrinho foi R$ %.2f\n",preco);
+        // Seleciona o método de pagamento
+        Pagamento pagamento = selecionarMetodoPagamento();
+        if (pagamento != null) {
+            pagamento.realizarPagamento(preco);
+            System.out.println("Compra finalizada com sucesso!");
+        } else {
+            System.out.println("Método de pagamento inválido. Compra não realizada.");
+        }
+    }
+
+    private Pagamento selecionarMetodoPagamento() {
+        Scanner sc = new Scanner(System.in);
         System.out.println("Selecione o método de pagamento:");
         System.out.println("[1] Cartão de Crédito");
         System.out.println("[2] Boleto");

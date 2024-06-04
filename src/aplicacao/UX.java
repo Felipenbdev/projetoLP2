@@ -1,14 +1,18 @@
 package aplicacao;
 
 import entidades.Comprador;
+import estoque.Produto;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import static aplicacao.Programa.comprador;
 
 public class UX {
-    private static Scanner sc = new Scanner(System.in); // Scanner para entrada de dados do usuário
+    private static final Scanner sc = new Scanner(System.in); // Scanner para entrada de dados do usuário
 
+    private static final List<Produto> carrinho = new ArrayList<>();
     // Método para criar um novo comprador
     public static void criarComprador() {
         System.out.print("Digite seu nome: ");
@@ -47,6 +51,7 @@ public class UX {
             case 1:
                 criarComprador();
                 System.out.println("Você já está cadastrado. Por favor, faça login.");
+                telaDeLogin(); // Chama recursivamente até uma opção válida ser escolhida
                 break;
             case 2:
                 if (comprador != null) {
@@ -68,6 +73,7 @@ public class UX {
 
     // Tela de compra
     public static void telaDeCompra(){
+        Produto produtoEncontrado;
         int categoria;
         boolean choice = true;
         System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
@@ -83,11 +89,17 @@ public class UX {
                 break;
             case 1:
                 System.out.println("Livros:");
-                comprador.fazerCompra(categoria);
+                produtoEncontrado = comprador.fazerCompra(categoria);
+                if(produtoEncontrado != null) {
+                    carrinho.add(produtoEncontrado);
+                }
                 break;
             case 2:
                 System.out.println("Eletrônicos:");
-                comprador.fazerCompra(categoria);
+                produtoEncontrado = comprador.fazerCompra(categoria);
+                if(produtoEncontrado != null) {
+                    carrinho.add(produtoEncontrado);
+                }
                 break;
             default:
                 System.out.println("Categoria inválida.");
@@ -104,6 +116,7 @@ public class UX {
             telaDeCompra(); // Chama recursivamente para continuar comprando
         } else {
             System.out.println("Saindo");
+            comprador.finalizarCompra(carrinho);
         }
     }
 

@@ -1,7 +1,7 @@
 package entidades;
 import estoque.Produto;
 
-public abstract class Usuario {
+public abstract class Usuario implements Autenticacao{
     protected String nome;
     protected String email;
     protected String senha;
@@ -47,13 +47,10 @@ public abstract class Usuario {
         this.login = login;
     }
     // métodos
-    public abstract boolean autenticacao(String email, String senha);
-       
-
     public void fazerLogin() {
         setLogin(true);
     }
-    
+
 
 
     public void fazerLogout() {
