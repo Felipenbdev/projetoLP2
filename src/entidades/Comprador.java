@@ -35,6 +35,15 @@ public class Comprador extends Usuario {
         System.out.println("Usuario nao encontrado, realize o registro!");
         return false;
     }
+    @Override
+    public void fazerLogin(){
+        setLogin(true);
+    }
+
+    @Override
+    public void fazerLogout(){
+        setLogin(false);
+    }
 
     public Produto fazerCompra(int categoria) {
         List<Produto> produtosEncontrados = new ArrayList<>();
@@ -114,6 +123,7 @@ public class Comprador extends Usuario {
             Produto produtoEncontrado = produtosEncontrados.get(escolha - 1);
             // Verifica se a quantidade é válida
             if (quantidade <= produtosEncontrados.get(escolha - 1).getQuantidade() && quantidade > 0) {
+                System.out.println("Produto adcionado ao carrinho!!");
                 produtosEncontrados.get(escolha - 1).diminuirQuantidade(quantidade);
                 produtoEncontrado.setQuantidade(quantidade);
                 return produtoEncontrado;

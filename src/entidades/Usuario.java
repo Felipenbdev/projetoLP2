@@ -34,7 +34,6 @@ public abstract class Usuario implements Autenticacao{
         this.email = email;
     }
 
-
     public void setSenha(String senha) {
         this.senha = senha;
     }
@@ -46,15 +45,15 @@ public abstract class Usuario implements Autenticacao{
     public void setLogin(boolean login) {
         this.login = login;
     }
+
+    /*
     // métodos
     public void fazerLogin() {
         setLogin(true);
     }
 
-
-
     public void fazerLogout() {
         setLogin(false);
     }
-
+    */
 }
