@@ -11,9 +11,11 @@ public class Pix implements ServicoPagamento {
 
     @Override
     public void exibirDetalhesPagamento(String nome, double valor) {
-        System.out.println("Detalhes do pagamento via PIX:");
+        System.out.println("-------------------------");
+        System.out.println("[Detalhes do pagamento via PIX]");
         System.out.println("Nome: " + nome);
         System.out.println("Valor: R$" + valor);
         System.out.println("Tempo para pagamento: 30 minutos");
+        System.out.println("-------------------------");
     }
 }
