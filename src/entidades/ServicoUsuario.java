@@ -1,6 +1,6 @@
 package entidades;
 
-public interface Autenticacao {
+public interface ServicoUsuario {
     public boolean autenticacao(String email, String senha);
 
     void fazerLogin();
