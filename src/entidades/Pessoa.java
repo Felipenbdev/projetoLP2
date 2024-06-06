@@ -1,8 +1,6 @@
 package entidades;
 import estoque.Carrinho;
 import estoque.Produto;
-import pagamento.Pagamento;
-import java.util.List;
 
 public abstract class Pessoa{
     protected String nome;

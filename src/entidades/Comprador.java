@@ -119,7 +119,7 @@ public class Comprador extends Pessoa {
             System.out.print("Digite a quantidade de produtos que deseja comprar: ");
             int quantidade = sc.nextInt();
             Produto produtoEncontrado = produtosEncontrados.get(escolha - 1);
-            
+
             // Verifica se a quantidade é válida
             if (quantidade <= produtosEncontrados.get(escolha - 1).getQuantidade() && quantidade > 0) {
                 produtosEncontrados.get(escolha - 1).diminuirQuantidade(quantidade);
@@ -129,7 +129,7 @@ public class Comprador extends Pessoa {
                 System.out.println("Valor Invalido, Retornando...");
                 return fazerCompra(categoria);
             }
-            
+
         }
     }
 
@@ -137,18 +137,27 @@ public class Comprador extends Pessoa {
     public void finalizarCompra(Carrinho carrinho) {
         carrinho.mostrarProdutos();
         double preco = carrinho.calcularValorTotal();
-        System.out.printf("Valor Total: R$ %.2f\n",preco);
+        System.out.printf("Valor Total: R$ %.2f\n", preco);
+
         // Seleciona o método de pagamento
-        Pagamento pagamento = selecionarMetodoPagamento();
-        if (pagamento != null) {
-            pagamento.realizarPagamento(this.nome, preco);
-            System.out.println("Compra finalizada com sucesso!");
+        ServicoPagamento servicoPagamento = selecionarMetodoPagamento();
+        if (servicoPagamento != null) {
+            // Exibe detalhes do pagamento
+            servicoPagamento.exibirDetalhesPagamento(this.nome, preco);
+            System.out.print("Deseja confirmar o pagamento? [S/N]: ");
+            Scanner sc = new Scanner(System.in);
+            if (sc.nextLine().equalsIgnoreCase("s")) {
+                servicoPagamento.realizarPagamento(this.nome, preco);
+                System.out.println("Compra finalizada com sucesso!");
+            } else {
+                System.out.println("Pagamento cancelado.");
+            }
         } else {
             System.out.println("Método de pagamento inválido. Compra não realizada.");
         }
     }
-   
-    private Pagamento selecionarMetodoPagamento() {
+
+    private ServicoPagamento selecionarMetodoPagamento() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Selecione o método de pagamento:");
         System.out.println("[1] Cartão de Crédito");
@@ -160,7 +169,6 @@ public class Comprador extends Pessoa {
 
         switch (escolha) {
             case 1:
-                
                 return new CartaoCredito();
             case 2:
                 return new Boleto();
