@@ -3,7 +3,7 @@ package aplicacao;
 import entidades.Comprador;
 import estoque.Carrinho;
 import estoque.Produto;
-
+import pagamento.*;
 
 import java.util.ArrayList;
 import java.util.List;
