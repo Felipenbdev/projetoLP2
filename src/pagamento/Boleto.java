@@ -4,7 +4,9 @@ public class Boleto implements ServicoPagamento {
 
     @Override
     public void realizarPagamento(String nome, double valor) {
+        System.out.println("-------------------------");
         System.out.println("Boleto gerado para pagamento de R$" + valor + ".");
+        System.out.println("-------------------------");
     }
 
     @Override

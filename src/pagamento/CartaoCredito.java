@@ -8,7 +8,7 @@ public class CartaoCredito implements ServicoPagamento {
     public void realizarPagamento(String nome, double valor) {
         double juros = 0.05;
         Scanner sc = new Scanner(System.in);
-
+        System.out.println("-------------------------");
         System.out.println("[Cartão de Crédito] Insira os dados do cartão:");
         System.out.print("Número do cartão: ");
         String numeroCartao = sc.nextLine();
@@ -18,8 +18,8 @@ public class CartaoCredito implements ServicoPagamento {
         String dataValidade = sc.nextLine();
         System.out.print("CVV: ");
         String cvv = sc.nextLine();
-
-        System.out.println("Valor da compra com juros: R$ " + (valor + (juros * valor)));
+        System.out.println("-------------------------");
+        System.out.println("Valor da compra: R$ " + (valor + (juros * valor)));
     }
 
     @Override
@@ -30,6 +30,6 @@ public class CartaoCredito implements ServicoPagamento {
         System.out.println("Valor: R$" + valor);
         System.out.println("Juros: 5%");
         System.out.println("Valor com juros: R$" + (valor + (valor * 0.05)));
-        System.out.println("-------------------------");
+        
     }
 }
