@@ -115,7 +115,7 @@ public class Comprador extends Pessoa {
             String confirmacao = sc.nextLine();
             if (!confirmacao.equalsIgnoreCase("s")) {
                 return fazerCompra(categoria);
-            }else{
+            }
             System.out.print("Digite a quantidade de produtos que deseja comprar: ");
             int quantidade = sc.nextInt();
             Produto produtoEncontrado = produtosEncontrados.get(escolha - 1);
@@ -129,7 +129,7 @@ public class Comprador extends Pessoa {
                 System.out.println("Valor Invalido, Retornando...");
                 return fazerCompra(categoria);
             }
-            }
+            
         }
     }
 
@@ -146,7 +146,7 @@ public class Comprador extends Pessoa {
         // Seleciona o método de pagamento
         Pagamento pagamento = selecionarMetodoPagamento();
         if (pagamento != null) {
-            pagamento.realizarPagamento(preco);
+            pagamento.realizarPagamento(this.nome, preco);
             System.out.println("Compra finalizada com sucesso!");
         } else {
             System.out.println("Método de pagamento inválido. Compra não realizada.");
@@ -165,6 +165,7 @@ public class Comprador extends Pessoa {
 
         switch (escolha) {
             case 1:
+                
                 return new CartaoCredito();
             case 2:
                 return new Boleto();

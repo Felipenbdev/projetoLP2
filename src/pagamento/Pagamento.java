@@ -1,5 +1,5 @@
 package pagamento;
 
 public interface Pagamento {
-    void realizarPagamento(double valor);
+    void realizarPagamento(String nome, double valor);
 }

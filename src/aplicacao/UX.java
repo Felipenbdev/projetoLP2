@@ -3,6 +3,7 @@ package aplicacao;
 import entidades.Comprador;
 import estoque.Produto;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -87,7 +88,7 @@ public class UX {
                 System.out.println("Categoria inválida.");
                 break;
         }
-        
+
         if(categoria != 0) {
             System.out.print("Continuar busca? [S/N] \n>> ");
             sc.nextLine();
@@ -97,6 +98,7 @@ public class UX {
             telaDeCompra();
         }else{
             System.out.println("Indo para o carrinho de compras...\n\n");
+            comprador.finalizarCompra(carrinho);
         }
     }
 
