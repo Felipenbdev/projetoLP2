@@ -150,6 +150,7 @@ public class Comprador extends Pessoa {
             if (sc.nextLine().equalsIgnoreCase("s")) {
                 servicoPagamento.realizarPagamento(this.nome, preco);
                 System.out.println("Compra finalizada com sucesso!");
+                carrinho.esvaziarProdutos();
             } else {
                 System.out.println("Pagamento cancelado.");
             }

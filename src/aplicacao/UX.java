@@ -1,12 +1,7 @@
 package aplicacao;
 
 import entidades.Comprador;
-import estoque.Carrinho;
-import estoque.Produto;
-import pagamento.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import estoque.*;
 import java.util.Scanner;
 
 import static aplicacao.Programa.comprador;
@@ -39,7 +34,6 @@ public class UX {
     }
     public static void telaDeLogin(){
         boolean loggedIn = false;
-        //tirar esse while e usar recursividade
         while (!loggedIn) {
             UX.menuLogin();
             int ops = sc.nextInt();
@@ -98,6 +92,11 @@ public class UX {
         if(choice) {
             telaDeCompra();
         }else{
+            carrinho.mostrarProdutos();
+            System.out.print("Deseja excluir algum produto? [s] [n]\n>>");
+            if(sc.nextLine().equalsIgnoreCase("s")){
+                carrinho.editarProdutos();
+            }
             System.out.println("Indo para o carrinho de compras...\n\n");
             comprador.finalizarCompra(carrinho);
         }

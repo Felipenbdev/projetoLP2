@@ -2,6 +2,7 @@ package estoque;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Carrinho implements ServicoCarrinho{
 
@@ -21,9 +22,17 @@ public class Carrinho implements ServicoCarrinho{
 
     @Override
     public void mostrarProdutos(){
-        System.out.println("Carrinho de Compras:");
-        for(Produto produto: carrinho){
-            System.out.println(produto);
+        if(carrinho.isEmpty()){
+            System.out.println("Carinho vazio!");
+        }else{
+            System.out.println("Carrinho de Compras:");
+            System.out.print("-----------------------------------");
+            int i = 1;
+            for(Produto produto: carrinho) {
+                System.out.printf("|-[%d]-|", i);
+                System.out.print(produto);
+                i++;
+            }
         }
     }
 
@@ -41,7 +50,24 @@ public class Carrinho implements ServicoCarrinho{
         return preco;
     }
 
-    public static List<Produto> getCarrinho() {
-        return carrinho;
+    public void editarProdutos(){
+        if(carrinho.isEmpty()){
+            System.out.println("Carinho vazio!");
+        }else {
+            Scanner sc = new Scanner(System.in);
+            mostrarProdutos();
+            System.out.print("Digite o indice para remover: ");
+            int i = sc.nextInt();
+            removerProduto(i - 1);
+            System.out.println("Carrinho atualizado!");
+            mostrarProdutos();
+            System.out.print("Deseja editar mais uma vez? [s] [n]\n>>");
+            sc.nextLine(); //buffer
+            if (sc.nextLine().equalsIgnoreCase("s")) {
+                editarProdutos();
+            } else {
+                System.out.println("Encerrando edição...");
+            }
+        }
     }
 }

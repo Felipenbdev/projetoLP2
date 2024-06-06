@@ -10,4 +10,6 @@ public interface ServicoCarrinho {
     void esvaziarProdutos();
 
     double calcularValorTotal();
+
+    void editarProdutos();
 }
