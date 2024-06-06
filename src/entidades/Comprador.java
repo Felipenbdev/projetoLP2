@@ -145,6 +145,7 @@ public class Comprador extends Pessoa {
             // Exibe detalhes do pagamento
             servicoPagamento.exibirDetalhesPagamento(this.nome, preco);
             System.out.print("Deseja confirmar o pagamento? [S/N]: ");
+            System.out.println();
             Scanner sc = new Scanner(System.in);
             if (sc.nextLine().equalsIgnoreCase("s")) {
                 servicoPagamento.realizarPagamento(this.nome, preco);
