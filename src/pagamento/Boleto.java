@@ -9,8 +9,10 @@ public class Boleto implements ServicoPagamento {
 
     @Override
     public void exibirDetalhesPagamento(String nome, double valor) {
+        System.out.println("-------------------------");
         System.out.println("Detalhes do pagamento via Boleto:");
         System.out.println("Nome: " + nome);
         System.out.println("Valor: R$" + valor);
+        System.out.println("-------------------------");
     }
 }

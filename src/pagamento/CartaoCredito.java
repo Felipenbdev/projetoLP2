@@ -24,10 +24,12 @@ public class CartaoCredito implements ServicoPagamento {
 
     @Override
     public void exibirDetalhesPagamento(String nome, double valor) {
+        System.out.println("-------------------------");
         System.out.println("Detalhes do pagamento via Cartão de Crédito:");
         System.out.println("Nome: " + nome);
         System.out.println("Valor: R$" + valor);
         System.out.println("Juros: 5%");
         System.out.println("Valor com juros: R$" + (valor + (valor * 0.05)));
+        System.out.println("-------------------------");
     }
 }
