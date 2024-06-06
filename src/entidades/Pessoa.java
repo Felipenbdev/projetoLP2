@@ -1,4 +1,5 @@
 package entidades;
+import estoque.Carrinho;
 import estoque.Produto;
 import pagamento.Pagamento;
 import java.util.List;
@@ -60,7 +61,7 @@ public abstract class Pessoa{
 
     public abstract Produto fazerCompra(int categoria);
     public abstract boolean autenticacao(String email, String senha);
-    public abstract void finalizarCompra(List<Produto> carrinho);
+    public abstract void finalizarCompra(Carrinho carrinho);
 
 }
 

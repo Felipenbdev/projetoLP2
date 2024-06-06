@@ -1,6 +1,7 @@
 package aplicacao;
 
 import entidades.Comprador;
+import estoque.Carrinho;
 import estoque.Produto;
 
 
@@ -11,8 +12,8 @@ import java.util.Scanner;
 import static aplicacao.Programa.comprador;
 
 public class UX {
-    private static Scanner sc = new Scanner(System.in);
-    public static List<Produto> carrinho = new ArrayList<>();
+    private static final Carrinho carrinho = new Carrinho();
+    private static final Scanner sc = new Scanner(System.in);
     public static void criarComprador() {
         System.out.print("Digite seu nome: ");
         String nome = sc.nextLine();
@@ -78,11 +79,11 @@ public class UX {
                 break;
             case 1:
                 System.out.println("Livros:");
-                comprador.fazerCompra(categoria);
+                carrinho.addProduto(comprador.fazerCompra(categoria));
                 break;
             case 2:
                 System.out.println("Eletrônicos:");
-                comprador.fazerCompra(categoria);
+                carrinho.addProduto(comprador.fazerCompra(categoria));
                 break;
             default:
                 System.out.println("Categoria inválida.");

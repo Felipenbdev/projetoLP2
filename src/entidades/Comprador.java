@@ -134,14 +134,9 @@ public class Comprador extends Pessoa {
     }
 
     @Override
-    public void finalizarCompra(List<Produto> carrinho) {
-        System.out.println("Carrinho de Compras:");
-        System.out.println(carrinho);
-        double preco = 0;
-        //percorrer carrinho somando o preço dos produtos
-        for(Produto produto: carrinho){
-            preco += produto.getQuantidade() * produto.getValor();
-        }
+    public void finalizarCompra(Carrinho carrinho) {
+        carrinho.mostrarProdutos();
+        double preco = carrinho.calcularValorTotal();
         System.out.printf("Valor Total: R$ %.2f\n",preco);
         // Seleciona o método de pagamento
         Pagamento pagamento = selecionarMetodoPagamento();
