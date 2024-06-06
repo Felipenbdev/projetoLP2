@@ -1,16 +1,18 @@
 package entidades;
 import estoque.Produto;
+import pagamento.Pagamento;
+import java.util.List;
 
-public abstract class Usuario implements Autenticacao{
+public abstract class Pessoa implements ServicoUsuario{
     protected String nome;
     protected String email;
     protected String senha;
     protected boolean login;
 
-    public Usuario(){
+    public Pessoa(){
 
     }
-    public Usuario(String nome, String email, String senha) {
+    public Pessoa(String nome, String email, String senha) {
         super();
         this.nome = nome;
         this.email = email;
@@ -46,14 +48,26 @@ public abstract class Usuario implements Autenticacao{
         this.login = login;
     }
 
-    /*
-    // métodos
+    //métodos
+    @Override
     public void fazerLogin() {
         setLogin(true);
     }
-
+    @Override
     public void fazerLogout() {
         setLogin(false);
     }
-    */
+    @Override
+    public abstract boolean autenticacao(String email, String senha);
+    @Override
+    public abstract Produto fazerCompra(int categoria);
+    @Override
+    public abstract void finalizarCompra(List<Produto> carrinho);
+
+    
+   
+    
 }
+
+
+
