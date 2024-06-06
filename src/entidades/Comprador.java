@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class Comprador extends Usuario {
+public class Comprador extends Pessoa {
     // Gerenciador de produtos estático
     public static GerenciadorProdutos gerenciador = new GerenciadorProdutos();
 
@@ -36,15 +36,6 @@ public class Comprador extends Usuario {
         return false;
     }
     @Override
-    public void fazerLogin(){
-        setLogin(true);
-    }
-
-    @Override
-    public void fazerLogout(){
-        setLogin(false);
-    }
-
     public Produto fazerCompra(int categoria) {
         List<Produto> produtosEncontrados = new ArrayList<>();
         List<Produto> produtos = gerenciador.getProdutos();
@@ -71,7 +62,7 @@ public class Comprador extends Usuario {
 
         // Opção para voltar ao menu de compras
         if (nomeProduto.equals("VOLTAR")) {
-            System.out.println("Voltando ao menu de compras!");
+            System.out.println("Voltando ao menu de compras...");
             // Encerra o método
             fazerCompra(categoria);
         }
@@ -106,7 +97,7 @@ public class Comprador extends Usuario {
         }
 
         // Escolha do produto pelo índice
-        System.out.print("\n[0] Sair\n Digite o indice --> ");
+        System.out.print("\n[0] Sair\nDigite o indice --> ");
         int escolha = sc.nextInt();
         sc.nextLine(); // Consome a nova linha
 
@@ -118,12 +109,19 @@ public class Comprador extends Usuario {
             System.out.println("Saindo! ");
             return null;
         } else {
+            // Confirmação do produto
+            System.out.printf("\nProduto escolhido: %s - R$ %.2f\n", produtosEncontrados.get(escolha - 1).getNome(), produtosEncontrados.get(escolha - 1).getValor());
+            System.out.println("Confirma o produto? [S/N]: ");
+            String confirmacao = sc.nextLine();
+            if (!confirmacao.equalsIgnoreCase("s")) {
+                return fazerCompra(categoria);
+            }else{
             System.out.print("Digite a quantidade de produtos que deseja comprar: ");
             int quantidade = sc.nextInt();
             Produto produtoEncontrado = produtosEncontrados.get(escolha - 1);
+            
             // Verifica se a quantidade é válida
             if (quantidade <= produtosEncontrados.get(escolha - 1).getQuantidade() && quantidade > 0) {
-                System.out.println("Produto adcionado ao carrinho!!");
                 produtosEncontrados.get(escolha - 1).diminuirQuantidade(quantidade);
                 produtoEncontrado.setQuantidade(quantidade);
                 return produtoEncontrado;
@@ -131,19 +129,20 @@ public class Comprador extends Usuario {
                 System.out.println("Valor Invalido, Retornando...");
                 return fazerCompra(categoria);
             }
+            }
         }
     }
 
-
+    @Override
     public void finalizarCompra(List<Produto> carrinho) {
-        System.out.println("exibindo carrinho de compras.");
+        System.out.println("Carrinho de Compras:");
         System.out.println(carrinho);
         double preco = 0;
         //percorrer carrinho somando o preço dos produtos
         for(Produto produto: carrinho){
             preco += produto.getQuantidade() * produto.getValor();
         }
-        System.out.printf("valor total do seu carrinho foi R$ %.2f\n",preco);
+        System.out.printf("Valor Total: R$ %.2f\n",preco);
         // Seleciona o método de pagamento
         Pagamento pagamento = selecionarMetodoPagamento();
         if (pagamento != null) {
@@ -153,7 +152,7 @@ public class Comprador extends Usuario {
             System.out.println("Método de pagamento inválido. Compra não realizada.");
         }
     }
-
+   
     private Pagamento selecionarMetodoPagamento() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Selecione o método de pagamento:");

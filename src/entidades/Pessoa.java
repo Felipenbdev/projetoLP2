@@ -3,7 +3,7 @@ import estoque.Produto;
 import pagamento.Pagamento;
 import java.util.List;
 
-public abstract class Pessoa implements ServicoUsuario{
+public abstract class Pessoa{
     protected String nome;
     protected String email;
     protected String senha;
@@ -49,24 +49,19 @@ public abstract class Pessoa implements ServicoUsuario{
     }
 
     //métodos
-    @Override
+    
     public void fazerLogin() {
         setLogin(true);
     }
-    @Override
+
     public void fazerLogout() {
         setLogin(false);
     }
-    @Override
-    public abstract boolean autenticacao(String email, String senha);
-    @Override
+
     public abstract Produto fazerCompra(int categoria);
-    @Override
+    public abstract boolean autenticacao(String email, String senha);
     public abstract void finalizarCompra(List<Produto> carrinho);
 
-    
-   
-    
 }
 
 
