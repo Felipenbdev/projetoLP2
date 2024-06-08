@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
 public class Comprador extends Pessoa {
     // Gerenciador de produtos estático
     public static GerenciadorProdutos gerenciador = new GerenciadorProdutos();
@@ -41,20 +40,7 @@ public class Comprador extends Pessoa {
         List<Produto> produtos = gerenciador.getProdutos();
 
         // Exibe produtos conforme a categoria escolhida
-        for (Produto produto : produtos) {
-            switch (categoria) {
-                case 1:
-                    if (produto instanceof Livro && produto.getQuantidade()>0) {
-                        System.out.println(produto);
-                    }
-                    break;
-                case 2:
-                    if (produto instanceof Eletronico && produto.getQuantidade()>0) {
-                        System.out.println(produto);
-                    }
-                    break;
-            }
-        }
+        gerenciador.mostrarProdutos(categoria);
 
         Scanner sc = new Scanner(System.in);
         System.out.print("\nDigite o nome do produto que deseja comprar ou 'VOLTAR' para retroceder: ");
@@ -64,7 +50,7 @@ public class Comprador extends Pessoa {
         if (nomeProduto.equals("VOLTAR")) {
             System.out.println("Voltando ao menu de compras...");
             // Encerra o método
-            fazerCompra(categoria);
+            return null;
         }
 
         // Busca pelo produto desejado
@@ -103,7 +89,8 @@ public class Comprador extends Pessoa {
 
         // Opção para sair
         if(escolha < 0 || produtosEncontrados.size() < escolha) {
-            fazerCompra(categoria);
+            System.out.println("Erro!");
+            return null;
         }
         if (escolha == 0) {
             System.out.println("Saindo! ");
@@ -118,18 +105,19 @@ public class Comprador extends Pessoa {
             }
             System.out.print("Digite a quantidade de produtos que deseja comprar: ");
             int quantidade = sc.nextInt();
-            Produto produtoEncontrado = produtosEncontrados.get(escolha - 1);
 
             // Verifica se a quantidade é válida
             if (quantidade <= produtosEncontrados.get(escolha - 1).getQuantidade() && quantidade > 0) {
                 produtosEncontrados.get(escolha - 1).diminuirQuantidade(quantidade);
-                produtoEncontrado.setQuantidade(quantidade);
-                return produtoEncontrado;
+                if(produtosEncontrados.get(escolha - 1) instanceof Livro){
+                    return new Livro(produtosEncontrados.get(escolha - 1).getNome(),produtosEncontrados.get(escolha - 1).getValor(),quantidade);
+                }else{
+                    return new Eletronico(produtosEncontrados.get(escolha - 1).getNome(),produtosEncontrados.get(escolha - 1).getValor(),quantidade);
+                }
             }else{
                 System.out.println("Valor Invalido, Retornando...");
                 return fazerCompra(categoria);
             }
-
         }
     }
 

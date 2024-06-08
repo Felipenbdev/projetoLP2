@@ -7,7 +7,7 @@ import java.util.Scanner;
 import static aplicacao.Programa.comprador;
 
 public class UX {
-    private static final Carrinho carrinho = new Carrinho();
+    public static final Carrinho carrinho = new Carrinho();
     private static final Scanner sc = new Scanner(System.in);
     public static void criarComprador() {
         System.out.print("Digite seu nome: ");

@@ -1,6 +1,6 @@
 package estoque;
 
-public interface ServicoCarrinho {
+public interface ServicoProdutos {
     void addProduto(Produto produto);
 
     void removerProduto(int index);

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Carrinho implements ServicoCarrinho{
+public class Carrinho implements ServicoProdutos {
 
     private static final List<Produto> carrinho = new ArrayList<>();
 
@@ -58,6 +58,10 @@ public class Carrinho implements ServicoCarrinho{
             mostrarProdutos();
             System.out.print("Digite o indice para remover: ");
             int i = sc.nextInt();
+            if(i < 0 || carrinho.size() < i) {
+                System.out.println("Erro!");
+                editarProdutos();
+            }
             removerProduto(i - 1);
             System.out.println("Carrinho atualizado!");
             mostrarProdutos();
