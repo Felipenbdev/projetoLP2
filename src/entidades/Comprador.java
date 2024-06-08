@@ -2,7 +2,6 @@ package entidades;
 
 import estoque.*;
 import pagamento.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -36,12 +35,10 @@ public class Comprador extends Pessoa {
     }
     @Override
     public Produto fazerCompra(int categoria) {
-        List<Produto> produtosEncontrados = new ArrayList<>();
-        List<Produto> produtos = gerenciador.getProdutos();
-
         // Exibe produtos conforme a categoria escolhida
         gerenciador.mostrarProdutos(categoria);
 
+        // User define a busca
         Scanner sc = new Scanner(System.in);
         System.out.print("\nDigite o nome do produto que deseja comprar ou 'VOLTAR' para retroceder: ");
         String nomeProduto = sc.nextLine();
@@ -53,22 +50,14 @@ public class Comprador extends Pessoa {
             return null;
         }
 
-        // Busca pelo produto desejado
-        for (Produto produto : produtos) {
-            if (produto.getNome().toLowerCase().contains(nomeProduto.toLowerCase())) {
-                if ((produto instanceof Livro && categoria == 1) || (produto instanceof Eletronico && categoria == 2)) {
-                    if (produto.getQuantidade() > 0) {
-                        produtosEncontrados.add(produto);
-                    }
-                }
-            }
-        }
+        // Lista com os produtos encontrados
+        List<Produto> produtosEncontrados = gerenciador.fazerBusca(nomeProduto,categoria);
 
         // Caso não encontre produtos
         if (produtosEncontrados.isEmpty()) {
             System.out.print("Não houve resultados na sua busca :( Deseja fazer outra busca? [s] para sim [n] para não: ");
             if (sc.nextLine().equalsIgnoreCase("s")) {
-                fazerCompra(categoria);
+                return fazerCompra(categoria);
             }
 
             // Encerra o método

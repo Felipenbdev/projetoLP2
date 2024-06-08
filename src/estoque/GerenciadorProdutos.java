@@ -31,6 +31,21 @@ public class GerenciadorProdutos implements ServicoProdutos {
         return produtos;
     }
 
+    public List<Produto> fazerBusca(String nomeProduto,int categoria){
+        // Busca pelo produto desejado
+        List<Produto> produtosEncontrados = new ArrayList<>();
+        for (Produto produto : produtos) {
+            if (produto.getNome().toLowerCase().contains(nomeProduto.toLowerCase())) {
+                if ((produto instanceof Livro && categoria == 1) || (produto instanceof Eletronico && categoria == 2)) {
+                    if (produto.getQuantidade() > 0) {
+                        produtosEncontrados.add(produto);
+                    }
+                }
+            }
+        }
+        return produtosEncontrados;
+    }
+
     @Override
     public void addProduto(Produto produto) {
         if (produto != null) {
@@ -121,7 +136,7 @@ public class GerenciadorProdutos implements ServicoProdutos {
                 break;
             case 2:
                 if (produtos.isEmpty()) {
-                    System.out.println("Carinho vazio!");
+                    System.out.println("Estoque vazio!");
                 } else {
                     mostrarProdutos();
                     System.out.print("Digite o indice para remover: ");
@@ -131,7 +146,7 @@ public class GerenciadorProdutos implements ServicoProdutos {
                         editarProdutos();
                     }
                     removerProduto(i - 1);
-                    System.out.println("Carrinho atualizado!");
+                    System.out.println("Estoque atualizado!");
                     mostrarProdutos();
                 }
                 break;
