@@ -4,6 +4,7 @@ import entidades.Comprador;
 import estoque.*;
 import java.util.Scanner;
 
+import static aplicacao.Logo.logo;
 import static aplicacao.Programa.comprador;
 
 public class UX {
@@ -59,6 +60,8 @@ public class UX {
     }
 
     public static void telaDeCompra(){
+        limparTela();
+        logo();
         int categoria;
         boolean choice = true;
         System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
@@ -94,10 +97,9 @@ public class UX {
                 System.out.println("Categoria inválida.");
                 break;
         }
-
+        sc.nextLine(); // Buffer
         if(categoria != 0) {
             System.out.print("Continuar busca? [S/N] \n>> ");
-            sc.nextLine();
             choice = sc.nextLine().equalsIgnoreCase("s");
         }
         if(choice) {
