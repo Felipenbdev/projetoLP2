@@ -46,7 +46,7 @@ public class UX {
                     break;
                 case 2:
                     if (comprador != null) {
-                        loggedIn = UX.fazerLogin(sc, comprador);
+                        loggedIn = fazerLogin(sc, comprador);
                     } else {
                         System.out.println("Você ainda não está cadastrado. Por favor, cadastre-se primeiro.");
                     }
@@ -68,16 +68,27 @@ public class UX {
         System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 
         switch (categoria) {
+
             case 0:
                 choice = false;
                 break;
             case 1:
                 System.out.println("Livros:");
-                carrinho.addProduto(comprador.fazerCompra(categoria));
+                Produto produtoLiv = comprador.fazerCompra(categoria);
+                if(produtoLiv != null) {
+                    carrinho.addProduto(produtoLiv);
+                }else{
+                    System.out.println("Nenhum produto escolhido");
+                }
                 break;
             case 2:
                 System.out.println("Eletrônicos:");
-                carrinho.addProduto(comprador.fazerCompra(categoria));
+                Produto produtoEle = comprador.fazerCompra(categoria);
+                if(produtoEle != null) {
+                    carrinho.addProduto(produtoEle);
+                }else{
+                    System.out.println("Nenhum produto escolhido");
+                }
                 break;
             default:
                 System.out.println("Categoria inválida.");
@@ -92,13 +103,17 @@ public class UX {
         if(choice) {
             telaDeCompra();
         }else{
-            carrinho.mostrarProdutos();
-            System.out.print("Deseja excluir algum produto? [s] [n]\n>>");
-            if(sc.nextLine().equalsIgnoreCase("s")){
-                carrinho.editarProdutos();
+            if(categoria != 0 ) {
+                carrinho.mostrarProdutos();
+                System.out.print("Deseja excluir algum produto? [s] [n]\n>>");
+                if (sc.nextLine().equalsIgnoreCase("s")) {
+                    carrinho.editarProdutos();
+                }
+                System.out.println("Indo para o carrinho de compras...\n\n");
+                comprador.finalizarCompra(carrinho);
+            }else{
+                System.out.println("Saindo...");
             }
-            System.out.println("Indo para o carrinho de compras...\n\n");
-            comprador.finalizarCompra(carrinho);
         }
     }
 

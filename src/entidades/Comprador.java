@@ -9,7 +9,7 @@ public class Comprador extends Pessoa {
     // Gerenciador de produtos estático
     public static GerenciadorProdutos gerenciador = new GerenciadorProdutos();
 
-    // Construtor padrão
+    
     public Comprador() {
     }
 
@@ -44,9 +44,9 @@ public class Comprador extends Pessoa {
         String nomeProduto = sc.nextLine();
 
         // Opção para voltar ao menu de compras
-        if (nomeProduto.equals("VOLTAR")) {
+        if (nomeProduto.equalsIgnoreCase("VOLTAR")) {
             System.out.println("Voltando ao menu de compras...");
-            // Encerra o método
+
             return null;
         }
 
@@ -60,7 +60,6 @@ public class Comprador extends Pessoa {
                 return fazerCompra(categoria);
             }
 
-            // Encerra o método
             return null;
         }
 
