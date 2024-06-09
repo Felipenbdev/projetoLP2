@@ -164,4 +164,9 @@ public class GerenciadorProdutos implements ServicoProdutos {
             System.out.println("Encerrando edição...");
         }
     }
+
+    @Override
+    public boolean isVazio(){
+        return produtos.isEmpty();
+    }
 }

@@ -12,4 +12,6 @@ public interface ServicoProdutos {
     double calcularValorTotal();
 
     void editarProdutos();
+
+    boolean isVazio();
 }

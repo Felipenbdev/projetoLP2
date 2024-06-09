@@ -74,4 +74,9 @@ public class Carrinho implements ServicoProdutos {
             }
         }
     }
+
+    @Override
+    public boolean isVazio(){
+        return carrinho.isEmpty();
+    }
 }

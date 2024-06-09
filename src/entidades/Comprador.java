@@ -36,6 +36,10 @@ public class Comprador extends Pessoa {
     @Override
     public Produto fazerCompra(int categoria) {
         // Exibe produtos conforme a categoria escolhida
+        if(gerenciador.isVazio()){
+            System.out.println("Estoque vazio!");
+            return null;
+        }
         gerenciador.mostrarProdutos(categoria);
 
         // User define a busca
