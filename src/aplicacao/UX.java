@@ -36,7 +36,7 @@ public class UX {
     public static void telaDeLogin(){
         boolean loggedIn = false;
         while (!loggedIn) {
-            UX.menuLogin();
+            menuLogin();
             int ops = sc.nextInt();
             sc.nextLine();
 
