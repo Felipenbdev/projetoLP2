@@ -138,8 +138,6 @@ public class Comprador extends Pessoa {
             } else {
                 System.out.println("Método de pagamento inválido. Compra não realizada.");
             }
-        }else{
-            System.out.println("MUDE AQUI!");
         }
     }
 

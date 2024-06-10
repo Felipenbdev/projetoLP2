@@ -53,24 +53,29 @@ public class Carrinho implements ServicoProdutos {
     public void editarProdutos(){
         Scanner sc = new Scanner(System.in);
         mostrarProdutos();
-        System.out.print("Digite o indice para remover: ");
+        System.out.print("Digite o indice para remover ou [0] para voltar: ");
         int i = sc.nextInt();
-        if(i < 0 || carrinho.size() < i) {
-            System.out.println("Erro!");
-            editarProdutos();
-        }
-        removerProduto(i - 1);
-        System.out.println("Carrinho atualizado!");
-        mostrarProdutos();
-        if(carrinho.isEmpty()){
+        if(i == 0){
             System.out.println("Encerrando edição...");
-        }else {
-            System.out.print("Deseja editar mais uma vez? [s] [n]\n>>");
-            sc.nextLine(); //buffer
-            if (sc.nextLine().equalsIgnoreCase("s")) {
+        }
+        else {
+            if (i < 0 || carrinho.size() < i) {
+                System.out.println("Erro!");
                 editarProdutos();
-            } else {
+            }
+            removerProduto(i - 1);
+            System.out.println("Carrinho atualizado!");
+            mostrarProdutos();
+            if (carrinho.isEmpty()) {
                 System.out.println("Encerrando edição...");
+            } else {
+                System.out.print("Deseja editar mais uma vez? [s] [n]\n>>");
+                sc.nextLine(); //buffer
+                if (sc.nextLine().equalsIgnoreCase("s")) {
+                    editarProdutos();
+                } else {
+                    System.out.println("Encerrando edição...");
+                }
             }
         }
     }
