@@ -100,11 +100,7 @@ public class UX {
                 carrinho.mostrarProdutos();
                 System.out.print("Deseja excluir algum produto? [s] [n]\n>>");
                 if (sc.nextLine().equalsIgnoreCase("s")) {
-                    if(carrinho.isVazio()){
-                        System.out.println("Carrinho está vazio");
-                    }else{
-                        carrinho.editarProdutos();
-                    }
+                   carrinho.editarProdutos();
                 }
                 System.out.println("Indo para o carrinho de compras...\n\n");
                 comprador.finalizarCompra(carrinho);
