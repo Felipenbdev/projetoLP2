@@ -97,10 +97,13 @@ public class UX {
             telaDeCompra();
         }else{
             if(categoria != 0 ) {
-                carrinho.mostrarProdutos();
-                System.out.print("Deseja excluir algum produto? [s] [n]\n>>");
-                if (sc.nextLine().equalsIgnoreCase("s")) {
-                   carrinho.editarProdutos();
+                if(!carrinho.isVazio()) {
+                    carrinho.mostrarProdutos();
+                    System.out.print("Deseja excluir algum produto? [s] [n]\n>>");
+                    if (sc.nextLine().equalsIgnoreCase("s")) {
+                        limparTela();
+                        carrinho.editarProdutos();
+                    }
                 }
                 System.out.println("Indo para o carrinho de compras...\n\n");
                 comprador.finalizarCompra(carrinho);
