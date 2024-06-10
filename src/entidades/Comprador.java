@@ -122,21 +122,16 @@ public class Comprador extends Pessoa {
 
             // Seleciona o método de pagamento
             ServicoPagamento servicoPagamento = selecionarMetodoPagamento();
-            if (servicoPagamento != null) {
-                // Exibe detalhes do pagamento
-                servicoPagamento.exibirDetalhesPagamento(this.nome, preco);
-                System.out.print("Deseja confirmar o pagamento? [S/N]: ");
-                System.out.println();
-                Scanner sc = new Scanner(System.in);
-                if (sc.nextLine().equalsIgnoreCase("s")) {
-                    servicoPagamento.realizarPagamento(this.nome, preco);
-                    System.out.println("Compra finalizada com sucesso!");
-                    carrinho.esvaziarProdutos();
-                } else {
-                    System.out.println("Pagamento cancelado.");
-                }
+            servicoPagamento.exibirDetalhesPagamento(this.nome, preco);
+            System.out.print("Deseja confirmar o pagamento? [S/N]: ");
+            System.out.println();
+            Scanner sc = new Scanner(System.in);
+            if (sc.nextLine().equalsIgnoreCase("s")) {
+                servicoPagamento.realizarPagamento(this.nome, preco);
+                System.out.println("Compra finalizada com sucesso!");
+                carrinho.esvaziarProdutos();
             } else {
-                System.out.println("Método de pagamento inválido. Compra não realizada.");
+                System.out.println("Pagamento cancelado.");
             }
         }
     }
@@ -159,6 +154,7 @@ public class Comprador extends Pessoa {
             case 3:
                 return new Pix();
             default:
+                System.out.println("Método inválido. Por favor, tente novamente.");
                 return selecionarMetodoPagamento();
         }
     }
