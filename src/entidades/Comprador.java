@@ -116,26 +116,30 @@ public class Comprador extends Pessoa {
     @Override
     public void finalizarCompra(Carrinho carrinho) {
         carrinho.mostrarProdutos();
-        double preco = carrinho.calcularValorTotal();
-        System.out.printf("Valor Total: R$ %.2f\n", preco);
+        if(!carrinho.isVazio()) {
+            double preco = carrinho.calcularValorTotal();
+            System.out.printf("Valor Total: R$ %.2f\n", preco);
 
-        // Seleciona o método de pagamento
-        ServicoPagamento servicoPagamento = selecionarMetodoPagamento();
-        if (servicoPagamento != null) {
-            // Exibe detalhes do pagamento
-            servicoPagamento.exibirDetalhesPagamento(this.nome, preco);
-            System.out.print("Deseja confirmar o pagamento? [S/N]: ");
-            System.out.println();
-            Scanner sc = new Scanner(System.in);
-            if (sc.nextLine().equalsIgnoreCase("s")) {
-                servicoPagamento.realizarPagamento(this.nome, preco);
-                System.out.println("Compra finalizada com sucesso!");
-                carrinho.esvaziarProdutos();
+            // Seleciona o método de pagamento
+            ServicoPagamento servicoPagamento = selecionarMetodoPagamento();
+            if (servicoPagamento != null) {
+                // Exibe detalhes do pagamento
+                servicoPagamento.exibirDetalhesPagamento(this.nome, preco);
+                System.out.print("Deseja confirmar o pagamento? [S/N]: ");
+                System.out.println();
+                Scanner sc = new Scanner(System.in);
+                if (sc.nextLine().equalsIgnoreCase("s")) {
+                    servicoPagamento.realizarPagamento(this.nome, preco);
+                    System.out.println("Compra finalizada com sucesso!");
+                    carrinho.esvaziarProdutos();
+                } else {
+                    System.out.println("Pagamento cancelado.");
+                }
             } else {
-                System.out.println("Pagamento cancelado.");
+                System.out.println("Método de pagamento inválido. Compra não realizada.");
             }
-        } else {
-            System.out.println("Método de pagamento inválido. Compra não realizada.");
+        }else{
+            System.out.println("MUDE AQUI!");
         }
     }
 

@@ -7,8 +7,8 @@ public class Programa {
     public static Comprador comprador = new Comprador();
     public static void main(String[] args) {
         logo();
-        telaDeLogin();
-        limparTela();
+        //telaDeLogin();
+        //limparTela();
         telaDeCompra();
         comprador.fazerLogout();
         System.out.println("Você saiu da sua conta.");

@@ -77,21 +77,12 @@ public class UX {
                 break;
             case 1:
                 System.out.println("Livros:");
-                Produto produtoLiv = comprador.fazerCompra(categoria);
-                if(produtoLiv != null) {
-                    carrinho.addProduto(produtoLiv);
-                }else{
-                    System.out.println("Nenhum produto escolhido");
-                }
+                carrinho.addProduto(comprador.fazerCompra(categoria));
+
                 break;
             case 2:
                 System.out.println("Eletrônicos:");
-                Produto produtoEle = comprador.fazerCompra(categoria);
-                if(produtoEle != null) {
-                    carrinho.addProduto(produtoEle);
-                }else{
-                    System.out.println("Nenhum produto escolhido");
-                }
+                carrinho.addProduto(comprador.fazerCompra(categoria));
                 break;
             default:
                 System.out.println("Categoria inválida.");
@@ -109,7 +100,11 @@ public class UX {
                 carrinho.mostrarProdutos();
                 System.out.print("Deseja excluir algum produto? [s] [n]\n>>");
                 if (sc.nextLine().equalsIgnoreCase("s")) {
-                    carrinho.editarProdutos();
+                    if(carrinho.isVazio()){
+                        System.out.println("Carrinho está vazio");
+                    }else{
+                        carrinho.editarProdutos();
+                    }
                 }
                 System.out.println("Indo para o carrinho de compras...\n\n");
                 comprador.finalizarCompra(carrinho);
