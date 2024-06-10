@@ -48,7 +48,7 @@ public class Comprador extends Pessoa {
         String nomeProduto = sc.nextLine();
 
         // Opção para voltar ao menu de compras
-        if (nomeProduto.equalsIgnoreCase("VOLTAR")) {
+        if (nomeProduto.equals("VOLTAR")) {
             System.out.println("Voltando ao menu de compras...");
 
             return null;
@@ -159,7 +159,7 @@ public class Comprador extends Pessoa {
             case 3:
                 return new Pix();
             default:
-                return null;
+                return selecionarMetodoPagamento();
         }
     }
 }

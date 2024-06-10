@@ -23,7 +23,7 @@ public class UX {
         comprador.setSenha(senha);
     }
 
-    public static boolean fazerLogin(Scanner sc, Comprador comprador) {
+    public static boolean fazerLogin(Comprador comprador) {
         System.out.print("Digite seu email: ");
         String emailLogin = sc.nextLine();
         System.out.print("Digite sua senha: ");
@@ -47,7 +47,7 @@ public class UX {
                     break;
                 case 2:
                     if (comprador != null) {
-                        loggedIn = fazerLogin(sc, comprador);
+                        loggedIn = fazerLogin(comprador);
                     } else {
                         System.out.println("Você ainda não está cadastrado. Por favor, cadastre-se primeiro.");
                     }

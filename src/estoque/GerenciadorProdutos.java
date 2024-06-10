@@ -67,7 +67,7 @@ public class GerenciadorProdutos implements ServicoProdutos {
             System.out.print("-----------------------------------");
             int i = 1;
             for (Produto produto : produtos) {
-                System.out.printf("|-[%d]-|", i);
+                System.out.printf("\n |-[%d]-|", i);
                 System.out.print(produto);
                 i++;
             }
